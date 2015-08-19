@@ -10,5 +10,6 @@ import com.softserve.edu.library2.dao.entities.Author;
  *
  */
 public interface AuthorDAO extends GenericDAO<Author, Integer> {
+	public Author findByName(String firstName, String lastName);
 
 }
