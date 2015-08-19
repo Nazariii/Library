@@ -37,7 +37,7 @@ public class Author {
 	}
 
 	/**
-	 * @param id
+	 * @param authot
 	 *            the id to set
 	 */
 	public void setId(int authot) {
