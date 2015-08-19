@@ -1,5 +1,5 @@
 /**
- * 
+ *  
  */
 package com.softserve.edu.library2.dao;
 
@@ -15,6 +15,7 @@ import com.softserve.edu.library2.dao.util.HibernateUtil;
 /**
  * @author Назік
  * @param <T>
+ * Abstract class for DAO hierarchy
  *
  */
 public abstract class AbstractDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
