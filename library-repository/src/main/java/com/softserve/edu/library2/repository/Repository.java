@@ -6,8 +6,12 @@ package com.softserve.edu.library2.repository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.softserve.edu.library2.dao.AddressDAO;
 import com.softserve.edu.library2.dao.AuthorDAO;
+import com.softserve.edu.library2.dao.BookDAO;
+import com.softserve.edu.library2.dao.impl.AddressDAOImpl;
 import com.softserve.edu.library2.dao.impl.AuthorDAOImpl;
+import com.softserve.edu.library2.dao.impl.BookDAOImpl;
 
 /**
  * @author Назік
@@ -17,10 +21,14 @@ public class Repository {
 	private static Logger logger = LogManager.getLogger();
 
 	private static Repository instance = null;
-	private AuthorDAO autorDAO = null;
-
+	private AuthorDAO authorDAO = null;
+	private AddressDAO addressDAO = null;
+	private BookDAO bookDAO = null;
+	
 	private Repository() {
-		autorDAO = new AuthorDAOImpl();
+		authorDAO = new AuthorDAOImpl();
+		addressDAO = new AddressDAOImpl();
+		bookDAO = new BookDAOImpl();
 	}
 
 	/**
@@ -41,9 +49,23 @@ public class Repository {
 	/**
 	 * @return the autorDAO
 	 */
-	public AuthorDAO getAutorDAO() {
+	public AuthorDAO getAuthorDAO() {
 		logger.info("get Author DAO");
-		return autorDAO;
+		return authorDAO;
+	}
+	
+	/**
+	 * @return the addressDAO
+	 */
+	public AddressDAO getAddressDAO() {
+		return addressDAO;
+	}
+
+	/**
+	 * @return the bookDAO
+	 */
+	public BookDAO getBookDAO() {
+		return bookDAO;
 	}
 
 }
