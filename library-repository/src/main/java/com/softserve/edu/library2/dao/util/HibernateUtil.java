@@ -58,10 +58,12 @@ public class HibernateUtil {
 	}
 
 	public static void rollbackTransaction() {
+		logger.info("========================= rollbackTransaction ==============================");
 		HibernateUtil.getSession().getTransaction().rollback();
 	}
 
 	public static void closeSession() {
+		logger.info("========================= closeSession ==============================");
 		HibernateUtil.getSession().close();
 	}
 
