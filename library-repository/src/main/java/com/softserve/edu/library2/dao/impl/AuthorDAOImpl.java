@@ -23,7 +23,12 @@ public class AuthorDAOImpl extends AbstractDAO<Author, Integer> implements Autho
 		String sql = "FROM Author WHERE firstName = :firstName AND lastName = :lastName";
 		Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
 				.setString("lastName", lastName);
-		Author person = findOne(query);
+		Author person = null;
+		try {
+			person = findOne(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return person;
 	}
 	

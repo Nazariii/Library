@@ -29,7 +29,7 @@ public class AuthorDAOImplTest {
 	public void testFindByNam() {
 		HibernateUtil.beginTransaction();
 		AuthorDAOImpl authorDAO = new AuthorDAOImpl();
-		Author author = authorDAO.findByName("Nazar", "Ivaskiv");
+		Author author = authorDAO.findByName("Ivan", "Ivanovych");
 		HibernateUtil.commitTransaction();
 		assertEquals("Ivan", author.getFirstName());
 
