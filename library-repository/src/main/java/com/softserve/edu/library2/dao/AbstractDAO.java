@@ -59,7 +59,7 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
 
 	public List<?> findAll(Class<?> clazz) {
 
-		return getSession().createQuery("FROM" + clazz.getName()).list();
+		return getSession().createQuery("FROM " + clazz.getName()).list();
 	}
 
 	/**

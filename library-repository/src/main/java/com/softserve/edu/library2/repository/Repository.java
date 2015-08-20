@@ -23,6 +23,7 @@ public class Repository {
 	private AddressDAO addressDAO = null;
 	private BookDAO bookDAO = null;
 	private ReaderDAO readerDAO = null;
+	
 	private Repository() {
 		authorDAO = new AuthorDAOImpl();
 		bookCopyDAO = new BookCopyDAOImpl();

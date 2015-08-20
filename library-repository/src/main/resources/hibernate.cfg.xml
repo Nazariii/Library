@@ -2,25 +2,23 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-	<session-factory>
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password">www123</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/library</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-		<!-- Enable Hibernate's automatic session context management -->
-		<property name="current_session_context_class">thread</property>
-		<!-- Echo all executed SQL to stdout -->
-		<property name="show_sql">true</property>
-		
-		<mapping package="com.softserve.edu.library2.dao.entities"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.Author"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.Address"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.Book"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.BookCopy"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.BookCopyReader"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.BookCopyReaderId"/>
-		<mapping class="com.softserve.edu.library2.dao.entities.Reader"/>
-	
-	</session-factory>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/library</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+  <!-- Enable Hibernate's automatic session context management -->
+  <property name="current_session_context_class">thread</property>
+  <!-- Echo all executed SQL to stdout -->
+  <property name="show_sql">true</property>
+  <mapping package="com.softserve.edu.library2.dao.entities"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.Author"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.Address"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.Book"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.BookCopy"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.BookCopyReader"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.BookCopyReaderId"/>
+  <mapping class="com.softserve.edu.library2.dao.entities.Reader"/>
+ </session-factory>
 </hibernate-configuration>
