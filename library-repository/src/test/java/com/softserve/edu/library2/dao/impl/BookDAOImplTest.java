@@ -7,37 +7,36 @@ import java.util.List;
 import org.junit.Test;
 
 import com.softserve.edu.library2.dao.entities.Address;
+import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
-public class AddressDAOImplTest {
-	
-	private Address address = new Address("Lviv");
+public class BookDAOImplTest {
+	Book book = new Book(1234567891123L, "Hibernate 4 dummies", 3);
 	
 	@Test
 	public void testSave() {
-		AddressDAOImpl addressDAOImpl = new AddressDAOImpl();
+		BookDAOImpl bookDAOImpl = new BookDAOImpl();
 		
 		HibernateUtil.beginTransaction();
-		addressDAOImpl.save(address);
+		bookDAOImpl.save(book);
 		HibernateUtil.commitTransaction();
 		
 		assertTrue(true);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testDelete() {
-		AddressDAOImpl addressDAOImpl = new AddressDAOImpl();
+		BookDAOImpl bookDAOImpl = new BookDAOImpl();
 		
-		HibernateUtil.beginTransaction();
-		
-		List<Address> addresses = (List<Address>) addressDAOImpl.findAll(Address.class);
-		Address lastAddedAddress = (Address)addresses.get(addresses.size() - 1);
-		addressDAOImpl.delete(lastAddedAddress);
+		HibernateUtil.beginTransaction();	
+		List<Book> books = (List<Book>) bookDAOImpl.findAll(Book.class);	
+		Book lastAddedBook = (Book)books.get(books.size() - 1);
+		bookDAOImpl.delete(lastAddedBook);
 		HibernateUtil.commitTransaction();
 		
 		HibernateUtil.beginTransaction();
-		boolean result = HibernateUtil.getSession().contains(address);
+		boolean result = HibernateUtil.getSession().contains(book);
 		HibernateUtil.commitTransaction();
 		
 		assertFalse(result);
