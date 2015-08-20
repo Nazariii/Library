@@ -23,6 +23,10 @@ public class Repository {
 		autorDAO = new AuthorDAOImpl();
 	}
 
+	/**
+	 * 
+	 * @return instance of library repository
+	 */
 	public Repository getInstance() {
 		if (instance == null) {
 			synchronized (Repository.class) {

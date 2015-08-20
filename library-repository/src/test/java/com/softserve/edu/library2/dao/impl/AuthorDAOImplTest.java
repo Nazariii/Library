@@ -1,6 +1,7 @@
 package com.softserve.edu.library2.dao.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -23,11 +24,12 @@ public class AuthorDAOImplTest {
 		assertTrue(true);
 	}
 
+	//@Ignore
 	@Test
 	public void testFindByNam() {
 		HibernateUtil.beginTransaction();
 		AuthorDAOImpl authorDAO = new AuthorDAOImpl();
-		Author author = authorDAO.findByName("Ivan", "Ivanovych");
+		Author author = authorDAO.findByName("Nazar", "Ivaskiv");
 		HibernateUtil.commitTransaction();
 		assertEquals("Ivan", author.getFirstName());
 
