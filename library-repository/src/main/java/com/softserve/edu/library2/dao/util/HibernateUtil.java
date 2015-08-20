@@ -31,11 +31,11 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 
-	public static Session beginTransaction() {
+	/*public static Session beginTransaction() {
 		Session hibernateSession = HibernateUtil.getSession();
 		hibernateSession.beginTransaction();
 		return hibernateSession;
-	}
+	}*/
 
 	public static void commitTransaction() {
 		HibernateUtil.getSession().getTransaction().commit();
