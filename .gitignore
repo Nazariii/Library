@@ -3,5 +3,7 @@
 .idea
 .project
 .classpath
-.settings/
+.settings
+/
 library-repository/mkyongapp.log.1
+library2.iml
