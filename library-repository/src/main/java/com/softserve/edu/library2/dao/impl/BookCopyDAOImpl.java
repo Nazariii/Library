@@ -50,5 +50,4 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 
     }
 
-
 }
