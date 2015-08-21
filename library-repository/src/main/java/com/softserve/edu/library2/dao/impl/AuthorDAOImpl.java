@@ -3,6 +3,9 @@
  */
 package com.softserve.edu.library2.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 
@@ -55,6 +58,19 @@ public class AuthorDAOImpl extends AbstractDAO<Author, Integer> implements Autho
 		Author author = null;
 		try {
 			author = findOne(query);
+		} catch (Exception e) {
+			logger.error("Error", e);
+		}
+		return author;
+	}
+
+	@Override
+	public List<Author> findSubauthorByBook(String name) {
+		String sql = "SELECT DISTINCT author FROM Author author JOIN author.bookauthors AS subauthors WHERE subauthors.name LIKE :name";
+		Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);
+		List<Author> author = null;
+		try {
+			author = findMany(query);
 		} catch (Exception e) {
 			logger.error("Error", e);
 		}
