@@ -58,7 +58,6 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
 
 	@SuppressWarnings("unchecked")
 	public List<T> findAll(Class<T> clazz) {
-
 		return getSession().createQuery("FROM " + clazz.getName()).list();
 	}
 
