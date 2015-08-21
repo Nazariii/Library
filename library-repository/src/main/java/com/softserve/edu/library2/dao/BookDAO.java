@@ -3,10 +3,8 @@
  */
 package com.softserve.edu.library2.dao;
 
-import java.sql.Date;
-import java.util.List;
-
 import com.softserve.edu.library2.dao.entities.Book;
+import com.softserve.edu.library2.dao.entities.BookCopy;
 
 /**
  * @author Taras
