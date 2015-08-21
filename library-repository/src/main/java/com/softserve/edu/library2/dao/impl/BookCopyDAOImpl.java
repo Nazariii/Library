@@ -9,9 +9,11 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import javax.persistence.TemporalType;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,9 +39,25 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 
     @Override
     public List<BookCopy> findByBook(Book book) {
-        String sql = "FROM  BookCopy WHERE book =:book";
+        String sql = "FROM  BookCopy  WHERE book =:book";
+      //String sql = "SELECT bookCopy FROM BookCopy AS bk  JOIN bk.book AS book WHERE bk.book LIKE :book";
+        //SELECT bookCopy FROM BookCopy AS bk  JOIN bk.book AS book WHERE bk.book LIKE :book
         HibernateUtil.getSession().createQuery(sql);
-        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book" ,book);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book", book);
+        List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
+        try {
+            bookCopyList = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error", e);
+        }
+        return bookCopyList;
+
+    }
+    @Override
+    public List<BookCopy> findByReturningDate(Date date) {
+        String sql = "FROM  BookCopy WHERE returningDate =:date";
+        HibernateUtil.getSession().createQuery(sql);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("date", date);
         List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
         try {
             bookCopyList = findMany(query);
@@ -50,4 +68,18 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 
     }
 
+    @Override
+    public List<BookCopy> findByBorrowingDate(Date date) {
+        String sql = "FROM  BookCopy WHERE borrowingDate =:date";
+        HibernateUtil.getSession().createQuery(sql);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("date", date);
+        List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
+        try {
+            bookCopyList = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error", e);
+        }
+        return bookCopyList;
+
+    }
 }
