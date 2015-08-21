@@ -24,7 +24,7 @@ public interface GenericDAO<T, ID extends Serializable> {
 
 	public T findOne(Query query);
 
-	public List<?> findAll(Class<?> clazz);
+	public List<T> findAll(Class<T> clazz);
 
 	public T findByID(Class<?> clazz, Integer id);
 }

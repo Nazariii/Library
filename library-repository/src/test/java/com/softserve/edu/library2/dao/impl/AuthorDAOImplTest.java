@@ -24,7 +24,6 @@ public class AuthorDAOImplTest {
 		assertTrue(true);
 	}
 
-	//@Ignore
 	@Test
 	public void testFindByNam() {
 		HibernateUtil.beginTransaction();
@@ -35,4 +34,13 @@ public class AuthorDAOImplTest {
 
 	}
 
+	@Test
+	public void testFindByBook() {
+		HibernateUtil.beginTransaction();
+		AuthorDAOImpl authorDAO = new AuthorDAOImpl();
+		Author author = authorDAO.findByBook("Kobzar");
+		HibernateUtil.commitTransaction();
+		assertEquals("Taras", author.getFirstName());
+
+	}
 }

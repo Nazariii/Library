@@ -30,17 +30,17 @@ public class Author implements java.io.Serializable {
 	private Integer authorId;
 	private String firstName;
 	private String lastName;
-	private Set<Book> books = new HashSet<Book>(0);
-	private Set<Book> books_1 = new HashSet<Book>(0);
+	private Set<Book> bookauthors = new HashSet<Book>(0);
+	private Set<Book> book = new HashSet<Book>(0);
 
 	public Author() {
 	}
 
-	public Author(String firstName, String lastName/* , Set books, Set books_1 */) {
+	public Author(String firstName, String lastName, Set<Book> bookauthors, Set<Book> book) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		// this.books = books;
-		// this.books_1 = books_1;
+		this.bookauthors = bookauthors;
+		this.book = book;
 	}
 
 	@Id
@@ -74,21 +74,21 @@ public class Author implements java.io.Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "subauthor", catalog = "library", joinColumns = { @JoinColumn(name = "author_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "isbn", nullable = false, updatable = false) })
-	public Set<Book> getBooks() {
-		return this.books;
+	public Set<Book> getBookauthors() {
+		return this.bookauthors;
 	}
 
-	public void setBooks(Set<Book> books) {
-		this.books = books;
+	public void setBookauthors(Set<Book> books) {
+		this.bookauthors = books;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
-	public Set<Book> getBooks_1() {
-		return this.books_1;
+	public Set<Book> getBook() {
+		return this.book;
 	}
 
-	public void setBooks_1(Set<Book> books_1) {
-		this.books_1 = books_1;
+	public void setBook(Set<Book> books_1) {
+		this.book = books_1;
 	}
 
 }

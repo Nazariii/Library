@@ -128,7 +128,7 @@ public class Book implements java.io.Serializable {
 		this.bookCopyCount = bookCopyCount;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "bookauthors")
 	public Set<Author> getAuthors() {
 		return this.authors;
 	}

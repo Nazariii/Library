@@ -11,11 +11,10 @@ import org.hibernate.Session;
 
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
-
 /**
  * @author Назік
  * @param <T>
- * Abstract class for DAO hierarchy
+ *            Abstract class for DAO hierarchy
  *
  */
 public abstract class AbstractDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
@@ -57,7 +56,8 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
 		return (T) query.uniqueResult();
 	}
 
-	public List<?> findAll(Class<?> clazz) {
+	@SuppressWarnings("unchecked")
+	public List<T> findAll(Class<T> clazz) {
 
 		return getSession().createQuery("FROM " + clazz.getName()).list();
 	}
@@ -75,8 +75,7 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
 	 * @return a persistent instance or null
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public T findByID(Class clazz, 
-			Integer id) {
+	public T findByID(Class clazz, Integer id) {
 		return (T) getSession().get(clazz, id);
 	}
 

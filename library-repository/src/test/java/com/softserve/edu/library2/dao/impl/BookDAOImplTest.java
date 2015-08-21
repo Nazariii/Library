@@ -1,12 +1,12 @@
 package com.softserve.edu.library2.dao.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Test;
 
-import com.softserve.edu.library2.dao.entities.Address;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
@@ -24,13 +24,12 @@ public class BookDAOImplTest {
 		assertTrue(true);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testDelete() {
 		BookDAOImpl bookDAOImpl = new BookDAOImpl();
 		
 		HibernateUtil.beginTransaction();	
-		List<Book> books = (List<Book>) bookDAOImpl.findAll(Book.class);	
+		List<Book> books = bookDAOImpl.findAll(Book.class);	
 		Book lastAddedBook = (Book)books.get(books.size() - 1);
 		bookDAOImpl.delete(lastAddedBook);
 		HibernateUtil.commitTransaction();
