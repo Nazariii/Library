@@ -2,8 +2,11 @@ package com.softserve.edu.library2.dao.impl;
 
 import com.softserve.edu.library2.dao.AbstractDAO;
 import com.softserve.edu.library2.dao.BookCopyDAO;
+import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
+import org.apache.logging.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
@@ -15,93 +18,37 @@ import java.util.List;
  * Created by Dmytro on 8/20/2015.
  */
 public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements BookCopyDAO{
-    private Class book;
-    private Long id;
 
-    public void updateBook(Long book_id, BookCopy book) throws SQLException {
-        Session session = null;
+    private static Logger logger = org.apache.logging.log4j.LogManager.getLogger();
+
+    @Override
+    public List<BookCopy> findByName(String name) {
+        String sql = "FROM  BookCopy WHERE book.name =:name";
+        HibernateUtil.getSession().createQuery(sql).setString("name", name);
+        Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);
+        List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.update(book);
-            session.getTransaction().commit();
+            bookCopyList = findMany(query);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
+            logger.error("Error", e);
         }
-    }
-
-
-    public Collection getAllBooks() throws SQLException {
-        Session session = null;
-        List books = new ArrayList<BookCopy>();
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            books = session.createCriteria(BookCopy.class).list();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-        return books;
-    }
-
-    public void deleteBook(BookCopy book) throws SQLException {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.delete(book);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        return bookCopyList;
     }
 
     @Override
-    public void save(BookCopy entity) {
-        Session session = null;
+    public List<BookCopy> findByBook(Book book) {
+        String sql = "FROM  BookCopy WHERE book =:book";
+        HibernateUtil.getSession().createQuery(sql);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book" ,book);
+        List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(entity);
+            bookCopyList = findMany(query);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
+            logger.error("Error", e);
         }
-    }
-
-    @Override
-    public void merge(BookCopy entity) {
+        return bookCopyList;
 
     }
 
-    @Override
-    public void delete(BookCopy entity) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.delete(entity);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
-    }
+
 }
