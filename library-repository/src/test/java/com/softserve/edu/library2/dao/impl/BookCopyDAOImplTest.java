@@ -44,45 +44,45 @@ public class BookCopyDAOImplTest {
         HibernateUtil.commitTransaction();
     }
 
-    @Test
-    public void testFindByName() throws Exception {
-        String sql = "FROM  BookCopy WHERE book.name =:Name";
-        String name = "name";
-        HibernateUtil.beginTransaction();
-        List<BookCopy> expectedBookCopyList = bookCopyDAO.findByName(name);
-        Query query = HibernateUtil.getSession().createQuery(sql).setString("Name" ,name);
-        List<BookCopy> actualBookCopyList = bookCopyDAO.findMany(query);
-        HibernateUtil.commitTransaction();
-        assertEquals(expectedBookCopyList, actualBookCopyList);
-
-        HibernateUtil.beginTransaction();
-        List<BookCopy> resultBook = bookCopyDAO.findByName(book.getName());
-        HibernateUtil.commitTransaction();
-        assertTrue(resultBook.equals(actualBookCopyList));
-    }
-
-    @Test
-    public void testFindByBook() throws Exception {
-        String sql = "FROM  BookCopy WHERE book =:book";
-        Book book = new Book();
-        HibernateUtil.beginTransaction();
-        List<BookCopy> expectedBookCopyList = bookCopyDAO.findByBook(book);
-        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book", book);
-        List<BookCopy> actualBookCopyList = bookCopyDAO.findMany(query);
-        HibernateUtil.commitTransaction();
-        assertEquals(expectedBookCopyList, actualBookCopyList);
-    }
-
-    @Test
-    public void testFindByReturningDate() throws Exception {
-        String sql = "FROM  BookCopy WHERE book =:book";
-        Book book = new Book();
-        HibernateUtil.beginTransaction();
-        List<BookCopy> expectedBookCopyList = bookCopyDAO.findByBook(book);
-        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book", book);
-        List<BookCopy> actualBookCopyList = bookCopyDAO.findMany(query);
-        HibernateUtil.commitTransaction();
-        assertEquals(expectedBookCopyList, actualBookCopyList);
-    }
-
+//    @Test
+//    public void testFindByName() throws Exception {
+//        String sql = "FROM  BookCopy WHERE book.name =:Name";
+//        String name = "name";
+//        HibernateUtil.beginTransaction();
+//        List<BookCopy> expectedBookCopyList = bookCopyDAO.findByName(name);
+//        Query query = HibernateUtil.getSession().createQuery(sql).setString("Name" ,name);
+//        List<BookCopy> actualBookCopyList = bookCopyDAO.findMany(query);
+//        HibernateUtil.commitTransaction();
+//        assertEquals(expectedBookCopyList, actualBookCopyList);
+//
+//        HibernateUtil.beginTransaction();
+//        List<BookCopy> resultBook = bookCopyDAO.findByName(book.getName());
+//        HibernateUtil.commitTransaction();
+//        assertTrue(resultBook.equals(actualBookCopyList));
+//    }
+//
+//    @Test
+//    public void testFindByBook() throws Exception {
+//        String sql = "FROM  BookCopy WHERE book =:book";
+//        Book book = new Book();
+//        HibernateUtil.beginTransaction();
+//        List<BookCopy> expectedBookCopyList = bookCopyDAO.findByBook(book);
+//        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book", book);
+//        List<BookCopy> actualBookCopyList = bookCopyDAO.findMany(query);
+//        HibernateUtil.commitTransaction();
+//        assertEquals(expectedBookCopyList, actualBookCopyList);
+//    }
+//
+//    @Test
+//    public void testFindByReturningDate() throws Exception {
+//        String sql = "FROM  BookCopy WHERE book =:book";
+//        Book book = new Book();
+//        HibernateUtil.beginTransaction();
+//        List<BookCopy> expectedBookCopyList = bookCopyDAO.findByBook(book);
+//        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book", book);
+//        List<BookCopy> actualBookCopyList = bookCopyDAO.findMany(query);
+//        HibernateUtil.commitTransaction();
+//        assertEquals(expectedBookCopyList, actualBookCopyList);
+//    }
+//
 }

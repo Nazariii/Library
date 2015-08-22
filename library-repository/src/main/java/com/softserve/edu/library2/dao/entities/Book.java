@@ -32,7 +32,7 @@ public class Book implements java.io.Serializable {
 	private Author author;
 	private String name;
 	private String publication;
-	private Date year;
+	private int year;
 	private Integer pageCount;
 	private int bookCopyCount;
 	private Set<Author> authors = new HashSet<Author>(0);
@@ -48,7 +48,7 @@ public class Book implements java.io.Serializable {
 		this.bookCopyCount = bookCopyCount;
 	}
 
-	public Book(long isbn, Author author, String name, String publication, Date year, Integer pageCount,
+	public Book(long isbn, Author author, String name, String publication, int year, Integer pageCount,
 			int bookCopyCount, Set<Author> authors, Set<BookCopyReader> bookCopyReaders, Set<BookCopy> bookCopies) {
 		this.isbn = isbn;
 		this.author = author;
@@ -100,13 +100,13 @@ public class Book implements java.io.Serializable {
 		this.publication = publication;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "year", length = 0)
-	public Date getYear() {
+
+	@Column(name = "year")
+	public int getYear() {
 		return this.year;
 	}
 
-	public void setYear(Date year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
