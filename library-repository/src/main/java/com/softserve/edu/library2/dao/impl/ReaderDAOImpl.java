@@ -23,6 +23,9 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
 
     /**
      * Method finds reader by first name and last name
+     * @param firstName - name of reader
+     * @param lastName - lastname of reader
+     * @return List of readers
      */
     public List<Reader> findByName(String firstName, String lastName) {
         String sql = "FROM Reader WHERE firstName = :firstName AND lastName = :lastName";
@@ -37,6 +40,11 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         return listReaders;
     }
 
+    /**
+     * Method to finnd readers by address where they are lives
+     * @param address - object of entity Address
+     * @return List of readers
+     */
     public List<Reader> findByAddress(Address address) {
         String sql = "SELECT reader FROM Reader AS reader JOIN reader.address AS address WHERE address LIKE :address";
         Query query = HibernateUtil.getSession().createQuery(sql).setEntity("address", address);
@@ -49,6 +57,11 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         return listReaders;
     }
 
+    /**
+     * Method to find readers by telephone number
+     * @param telephone - telephone number of reader
+     * @return - object reader
+     */
     public Reader findByTelephone(String telephone) {
         String sql = "FROM Reader WHERE telephone = :telephone";
         Query query = HibernateUtil.getSession().createQuery(sql).setString("telephone", telephone);
@@ -61,6 +74,11 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         return reader;
     }
 
+    /**
+     * Method to find readers by birth date
+     * @param birthDate - birth date of readers/reader
+     * @return - List of readers
+     */
     public List<Reader> findByBirthDate(Date birthDate){
         String sql = "FROM Reader WHERE birthDate = :birthDate";
         Query query = HibernateUtil.getSession().createQuery(sql).setDate("birthDate", birthDate);
@@ -73,6 +91,11 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         return listReaders;
     }
 
+    /**
+     * Method to find readers by book wich they are takenn
+     * @param name - title of book
+     * @return - List of readers
+     */
     public List<Reader> findByBook(String name) {
         String sql = "FROM Reader AS reader JOIN reader.bookCopyReaders AS bCopy WHERE bCopy.book.name = :name";
         Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);
@@ -84,13 +107,4 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         }
         return listReaders;
     }
-
-
-
-//    public Reader findByBook(Book book) {
-//        String sql = "SELECT reader FROM Reader AS reader JOIN e.address a where ";
-//
-//        return reader;
-//
-//    }
 }
