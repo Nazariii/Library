@@ -14,7 +14,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      * Method finds author by first name and last name
      */
     public Reader findByName(String firstName, String lastName, String middleName) {
-        String sql = "FROM Reader WHERE firstName = :firstName AND lastName = :lastName AND middleName = :middleName";
+        String sql = "FROM Reader WHERE firstName = :firstName AND lastName = :lastName";
         Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
                 .setString("lastName", lastName).setString("middleName", middleName);
         Reader reader = findOne(query);
