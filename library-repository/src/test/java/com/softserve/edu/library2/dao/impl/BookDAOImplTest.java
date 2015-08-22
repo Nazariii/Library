@@ -2,14 +2,11 @@ package com.softserve.edu.library2.dao.impl;
 
 import static org.junit.Assert.*;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.type.YesNoType;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.softserve.edu.library2.dao.entities.Book;
@@ -22,14 +19,17 @@ import com.softserve.edu.library2.dao.util.HibernateUtil;
 public class BookDAOImplTest {
 	private final static String BOOK_NAME = "Hibernate 4 dummies";
 	private final static long BOOK_ISBN = 1234567891123L;
-	//private final static Date BOOK_YEAR = new Date(2009, 3, 5);
+	private final static int BOOK_YEAR = 1750;
+	private final static String BOOK_PUBLISHER = "O'Reilly";
 	
 	private static Book book = new Book(BOOK_ISBN, BOOK_NAME, 3);
 	private static BookDAOImpl bookDAOImpl = new BookDAOImpl();
 	
 	@Before
 	public void init() {	
-		// book.setYear(BOOK_YEAR);
+		book.setYear(BOOK_YEAR);
+		book.setPublication(BOOK_PUBLISHER);
+		
 		HibernateUtil.beginTransaction();
 		bookDAOImpl.save(book);
 		HibernateUtil.commitTransaction();
@@ -55,7 +55,6 @@ public class BookDAOImplTest {
 				&& resultBook.getIsbn() == book.getIsbn());		
 	}
 	
-	/*
 	@Test
 	public void testGetBooksByYear() {
 		List<Book> expected = new ArrayList<Book>();
@@ -69,7 +68,39 @@ public class BookDAOImplTest {
 				&& expected.get(0).getIsbn() == books.get(0).getIsbn());
 		
 	}
-	*/
+	
+	@Test
+	public void testGetAllBooks() {
+		HibernateUtil.beginTransaction();
+		List<Book> books = bookDAOImpl.getAllBooks();
+		HibernateUtil.commitTransaction();
+		
+		//assertTrue(books.contains(book));
+		for (Book b : books) {
+			if (b.getName().equals(BOOK_NAME)) {
+				assertTrue(true);
+			}
+		}
+	}
+	
+	@Test
+	public void testGetBooksByAuthor() {
+		HibernateUtil.beginTransaction();
+		List<Book> books = bookDAOImpl.getBooksByAuthor("Ivan", "Franko");
+		HibernateUtil.commitTransaction();
+		
+		assertTrue(books.size() > 0 && books.get(0).getName().equals("Kamenyari"));
+	}
+	
+	@Test
+	public void testGetBooksByPublisher() {
+		HibernateUtil.beginTransaction();
+		List<Book> books = bookDAOImpl.getBooksByPublisher(BOOK_PUBLISHER);
+		HibernateUtil.commitTransaction();
+		
+		assertTrue(books.size() > 0 && books.get(0).getName().equals(BOOK_NAME)
+				&& books.get(0).getPublication().equals(BOOK_PUBLISHER));
+		}
 	
 	@After
 	public void undoChanges() {

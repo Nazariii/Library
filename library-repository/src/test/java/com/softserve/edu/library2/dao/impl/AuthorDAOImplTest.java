@@ -26,7 +26,7 @@ public class AuthorDAOImplTest {
 	}
 
 	@Test
-	public void testFindByNam() {
+	public void testFindByName() {
 		HibernateUtil.beginTransaction();
 		AuthorDAOImpl authorDAO = new AuthorDAOImpl();
 		Author author = authorDAO.findByName("Ivan", "Ivanovych");
