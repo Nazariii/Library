@@ -145,4 +145,18 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		return books;
 	}
 	
+
+	public List<Book> getBooksByReader(String firstName, String lastName) {
+		String sql = "FROM Book as book JOIN book.bookCopyReaders as bcr WHERE bcr.reader.firstName = :firstName "
+				+ "AND bcr.reader.lastName = :lastName";
+		Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
+				.setString("lastName", lastName);
+		List<Book> books = Collections.emptyList();
+		try {
+			books = findMany(query);
+		} catch (Exception e) {
+			logger.error("Error", e);
+		}
+		return books;
+	}
 }

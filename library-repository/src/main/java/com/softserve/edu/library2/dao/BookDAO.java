@@ -18,4 +18,5 @@ public interface BookDAO extends GenericDAO<Book, Integer>{
 	List<Book> getAllBooks();
 	List<Book> getBooksByAuthor(String firstName, String lastName);
 	List<Book> getBooksByPublisher(String publisher);
+	List<Book> getBooksByReader(String firstName, String lastName);
 }

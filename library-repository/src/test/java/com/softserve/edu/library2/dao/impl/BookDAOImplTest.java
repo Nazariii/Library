@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -100,7 +101,16 @@ public class BookDAOImplTest {
 		
 		assertTrue(books.size() > 0 && books.get(0).getName().equals(BOOK_NAME)
 				&& books.get(0).getPublication().equals(BOOK_PUBLISHER));
-		}
+	}
+	
+	@Test
+	public void testGetBooksByReader() {
+		HibernateUtil.beginTransaction();
+		List<Book> books = bookDAOImpl.getBooksByReader("Petro", "Las");
+		HibernateUtil.commitTransaction();
+		
+		assertTrue(true);
+	}
 	
 	@After
 	public void undoChanges() {
