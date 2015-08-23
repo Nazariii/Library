@@ -39,11 +39,9 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 
     @Override
     public List<BookCopy> findByBook(Book book) {
-        String sql = "FROM  BookCopy  WHERE book =:book";
-      //String sql = "SELECT bookCopy FROM BookCopy AS bk  JOIN bk.book AS book WHERE bk.book LIKE :book";
-        //SELECT bookCopy FROM BookCopy AS bk  JOIN bk.book AS book WHERE bk.book LIKE :book
+        String sql = "FROM  BookCopy  WHERE book.isbn =:isbn";
         HibernateUtil.getSession().createQuery(sql);
-        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("book", book);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("isbn", book.getIsbn());
         List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
         try {
             bookCopyList = findMany(query);
@@ -82,4 +80,34 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
         return bookCopyList;
 
     }
+
+    @Override
+    public List<BookCopy> findByPrecence(Character isPresent) {
+        String sql = "FROM  BookCopy WHERE isPresent =:isPresent";
+        HibernateUtil.getSession().createQuery(sql);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("isPresent", isPresent);
+        List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
+        try {
+            bookCopyList = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error", e);
+        }
+        return bookCopyList;
+    }
+
+    @Override
+    public List<BookCopy> findByISBN(Long isbn) {
+        String sql;
+        sql = "FROM  BookCopy WHERE book.isbn=:isbn";
+        HibernateUtil.getSession().createQuery(sql);
+        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("isbn", isbn);
+        List<BookCopy> bookCopyList  = new ArrayList<BookCopy>();
+        try {
+            bookCopyList = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error", e);
+        }
+        return bookCopyList;
+    }
 }
+
