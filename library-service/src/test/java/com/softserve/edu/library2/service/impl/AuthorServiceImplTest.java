@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.softserve.edu.library2.service;
+package com.softserve.edu.library2.service.impl;
 
 import static org.junit.Assert.*;
 
@@ -17,6 +17,7 @@ import com.softserve.edu.library2.config.AppConfig;
 import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.impl.AuthorDAOImpl;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
+import com.softserve.edu.library2.service.AuthorService;
 
 /**
  * @author Назік
@@ -35,7 +36,7 @@ public class AuthorServiceImplTest {
 
 	/**
 	 * Test method for
-	 * {@link com.softserve.edu.library2.service.AuthorServiceImpl#findByName(java.lang.String, java.lang.String)}
+	 * {@link com.softserve.edu.library2.service.impl.impl.AuthorServiceImpl#findByName(java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
