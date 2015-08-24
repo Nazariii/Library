@@ -11,7 +11,7 @@ import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 public class AuthorDAOImplTest {
 
-	@Ignore
+
 	@Test
 	public void testSave() {
 		Author author = new Author();
@@ -24,15 +24,23 @@ public class AuthorDAOImplTest {
 		assertTrue(true);
 	}
 
-	//@Ignore
 	@Test
-	public void testFindByNam() {
+	public void testFindByName() {
 		HibernateUtil.beginTransaction();
 		AuthorDAOImpl authorDAO = new AuthorDAOImpl();
-		Author author = authorDAO.findByName("Nazar", "Ivaskiv");
+		Author author = authorDAO.findByName("Ivan", "Ivanovych");
 		HibernateUtil.commitTransaction();
 		assertEquals("Ivan", author.getFirstName());
 
 	}
 
+	@Test
+	public void testFindByBook() {
+		HibernateUtil.beginTransaction();
+		AuthorDAOImpl authorDAO = new AuthorDAOImpl();
+		Author author = authorDAO.findByBook("Kobzar");
+		HibernateUtil.commitTransaction();
+		assertEquals("Taras", author.getFirstName());
+
+	}
 }
