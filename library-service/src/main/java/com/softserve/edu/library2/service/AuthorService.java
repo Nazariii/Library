@@ -3,6 +3,8 @@
  */
 package com.softserve.edu.library2.service;
 
+import java.util.List;
+
 import com.softserve.edu.library2.dao.entities.Author;
 
 /**
@@ -10,7 +12,10 @@ import com.softserve.edu.library2.dao.entities.Author;
  *
  */
 public interface AuthorService {
-	
+
 	public Author findByName(String firstName, String lastName);
 
+	public Author findByBook(String name);
+
+	public List<Author> findSubauthorByBook(String name);
 }
