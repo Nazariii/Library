@@ -1,11 +1,10 @@
 package com.softserve.edu.library2.dao.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

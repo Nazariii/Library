@@ -52,7 +52,7 @@ public class Book implements java.io.Serializable {
 		if (year < 1700 || year > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year must be in range [1700 - current year].");
 		}
-		
+
 		this.isbn = isbn;
 		this.author = author;
 		this.name = name;
@@ -112,7 +112,6 @@ public class Book implements java.io.Serializable {
 		if (year < 1700 || year > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year must be in range [1700 - current year].");
 		}
-		
 		this.year = year;
 	}
 

@@ -36,7 +36,7 @@ public class Reader implements java.io.Serializable {
 	private String middleName;
 	private String telephone;
 	private Date birthDate;
-	private Set<BookCopyReader> bookCopyReaders = new HashSet<>(0);
+	private Set<BookCopyReader> bookCopyReaders = new HashSet<BookCopyReader>(0);
 
 	public Reader() {
 	}

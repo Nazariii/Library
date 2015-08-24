@@ -8,10 +8,11 @@ import java.util.List;
 import com.softserve.edu.library2.dao.entities.Book;
 
 /**
- * @author Taras
+ * @author Назік
  *
  */
 public interface BookDAO extends GenericDAO<Book, Integer>{
+
 	Book getBookByName(String name);
 	Book getBookByISBN(long isbn);
 	List<Book> getBooksByYear(int year);
@@ -19,4 +20,5 @@ public interface BookDAO extends GenericDAO<Book, Integer>{
 	List<Book> getBooksByAuthor(String firstName, String lastName);
 	List<Book> getBooksByPublisher(String publisher);
 	List<Book> getBooksByReader(String firstName, String lastName);
+	
 }

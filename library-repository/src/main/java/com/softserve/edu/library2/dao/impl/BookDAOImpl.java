@@ -3,6 +3,7 @@ package com.softserve.edu.library2.dao.impl;
 import com.softserve.edu.library2.dao.AbstractDAO;
 import com.softserve.edu.library2.dao.BookDAO;
 import com.softserve.edu.library2.dao.entities.Book;
+
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,7 @@ import java.util.List;
 public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 
 	private static Logger logger = org.apache.logging.log4j.LogManager.getLogger();
-	
+
 	/**
 	 * Method finds book by name
 	 * 
@@ -39,7 +40,7 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return book;
 	}
-	
+
 	/**
 	 * Method finds book by isbn
 	 * 
@@ -60,9 +61,10 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		return book;
 	}
 
-	
 	/**
-	 * Method finds all books published in {@param year}
+	 * Method finds all books published in
+	 * 
+	 * @param year}
 	 * 
 	 * @param year
 	 *            - year of publishing
@@ -73,7 +75,7 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		if (year < 1700 || year > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year must be in range [1700 - current year].");
 		}
-		
+
 		String sql = "FROM Book WHERE year = :year";
 		Query query = HibernateUtil.getSession().createQuery(sql).setInteger("year", year);
 		List<Book> books = Collections.emptyList();
@@ -84,14 +86,14 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return books;
 	}
-	
+
 	/**
 	 * Method gets all books from database
 	 * 
 	 * @return {@link List<Book>}
 	 */
 	@Override
-	public List<Book> getAllBooks() {	
+	public List<Book> getAllBooks() {
 		List<Book> books = Collections.emptyList();
 		try {
 			books = findAll(Book.class);
@@ -100,15 +102,15 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return books;
 	}
-	
+
 	/**
 	 * Method finds all books with specific author
 	 * 
 	 * @param firstName
 	 *            - author's first name.
-	 * @param lastName          
-	 *  	      - author's last name.
-	 *  
+	 * @param lastName
+	 *            - author's last name.
+	 * 
 	 * @return {@link List<Book>}
 	 */
 	@Override
@@ -125,12 +127,13 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		return books;
 	}
 
-	
 	/**
-	 *  Method finds all books published by {@param publisher}
+	 * Method finds all books published by
+	 * 
+	 * @param publisher}
 	 * 
 	 * @param publisher
-	 * 				- publisher
+	 *            - publisher
 	 * @return {@link List<Book>}
 	 */
 	public List<Book> getBooksByPublisher(String publisher) {
@@ -144,7 +147,6 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return books;
 	}
-	
 
 	public List<Book> getBooksByReader(String firstName, String lastName) {
 		String sql = "FROM Book as book JOIN book.bookCopyReaders as bcr WHERE bcr.reader.firstName = :firstName "
@@ -159,4 +161,5 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return books;
 	}
+
 }
