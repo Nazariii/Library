@@ -6,10 +6,13 @@ package com.softserve.edu.library2.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 /**
  * @author Назік
@@ -18,8 +21,13 @@ import com.softserve.edu.library2.dao.util.HibernateUtil;
  *
  */
 public abstract class AbstractDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	protected Session getSession() {
-		return HibernateUtil.getSession();
+		//return HibernateUtil.getSession();
+		return sessionFactory.getCurrentSession();
 	}
 
 	/**

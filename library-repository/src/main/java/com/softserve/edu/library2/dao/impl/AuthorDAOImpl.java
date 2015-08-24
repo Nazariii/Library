@@ -3,18 +3,23 @@
  */
 package com.softserve.edu.library2.dao.impl;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import com.softserve.edu.library2.dao.AbstractDAO;
 import com.softserve.edu.library2.dao.AuthorDAO;
 import com.softserve.edu.library2.dao.entities.Author;
-import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 /**
  * @author Назік
  *
  */
+@Repository
 public class AuthorDAOImpl extends AbstractDAO<Author, Integer> implements AuthorDAO {
 
 	private static Logger logger = org.apache.logging.log4j.LogManager.getLogger();
@@ -30,7 +35,7 @@ public class AuthorDAOImpl extends AbstractDAO<Author, Integer> implements Autho
 	 */
 	public Author findByName(String firstName, String lastName) {
 		String sql = "FROM Author WHERE firstName = :firstName AND lastName = :lastName";
-		Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
+		Query query = super.getSession().createQuery(sql).setString("firstName", firstName)
 				.setString("lastName", lastName);
 		Author author = null;
 		try {
@@ -51,10 +56,23 @@ public class AuthorDAOImpl extends AbstractDAO<Author, Integer> implements Autho
 	@Override
 	public Author findByBook(String name) {
 		String sql = "SELECT author FROM Author AS author JOIN author.book AS book WHERE name LIKE :name";
-		Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);
+		Query query = super.getSession().createQuery(sql).setString("name", name);
 		Author author = null;
 		try {
 			author = findOne(query);
+		} catch (Exception e) {
+			logger.error("Error", e);
+		}
+		return author;
+	}
+
+	@Override
+	public List<Author> findSubauthorByBook(String name) {
+		String sql = "SELECT DISTINCT author FROM Author author JOIN author.bookauthors AS subauthors WHERE subauthors.name LIKE :name";
+		Query query = super.getSession().createQuery(sql).setString("name", name);
+		List<Author> author = null;
+		try {
+			author = findMany(query);
 		} catch (Exception e) {
 			logger.error("Error", e);
 		}

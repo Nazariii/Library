@@ -4,6 +4,7 @@
 .project
 .classpath
 .settings
-/
+*.log
+
 library-repository/mkyongapp.log.1
 library2.iml
