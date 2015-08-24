@@ -2,9 +2,6 @@ package com.softserve.edu.library2.dao.entities;
 
 // Generated Aug 20, 2015 4:19:05 PM by Hibernate Tools 4.3.1
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -103,33 +100,6 @@ public class BookCopy implements java.io.Serializable {
 
 	public void setBookCopyReaders(Set<BookCopyReader> bookCopyReaders) {
 		this.bookCopyReaders = bookCopyReaders;
-	}
-
-	@Override
-	public int hashCode(){
-		return new HashCodeBuilder()
-				.append(bookCopyId)
-				.append(book)
-				.append(isPresent)
-				.append(returningDate)
-				.append(borrowingDate)
-				.toHashCode();
-	}
-
-	@Override
-	public boolean equals(final Object obj){
-		if(obj instanceof BookCopy){
-			final BookCopy other = (BookCopy) obj;
-			return new EqualsBuilder()
-					.append(bookCopyId, other.bookCopyId)
-					.append(book, other.book)
-					.append(isPresent, other.isPresent)
-					.append(returningDate, other.returningDate)
-					.append(borrowingDate, other.borrowingDate)
-					.isEquals();
-		} else{
-			return false;
-		}
 	}
 
 }
