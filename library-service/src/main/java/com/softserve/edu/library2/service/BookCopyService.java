@@ -1,5 +1,6 @@
 package com.softserve.edu.library2.service;
 
+import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 
@@ -21,4 +22,7 @@ public interface BookCopyService {
     public List<BookCopy> findByPrecence(Character isPresent);
 
     public List<BookCopy> findByISBN(Long isbn);
+
+    public Author findAuthorOfBookCopy (BookCopy bookCopy);
+    
 }

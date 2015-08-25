@@ -26,13 +26,9 @@ public class main {
         Logger logger = LogManager.getLogger();
         BookCopyDAO bookCopyDAOImpl = new BookCopyDAOImpl();
         BookDAO bookDAOImpl = new BookDAOImpl();
-        Session session = null;
-            session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
             List<Book> books = bookDAOImpl.findAll(Book.class);
             Book book = books.get(0);
             List<BookCopy> bookCopyList = bookCopyDAOImpl.findByBook(book);
             System.out.println(bookCopyList.get(0));
-            session.getTransaction().commit();
     }
 }

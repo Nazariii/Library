@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.softserve.edu.library2.dao.entities.Author;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
@@ -39,7 +40,7 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 
 	@Override
 	public List<BookCopy> findByBook(Book book) {
-		String sql = "FROM  BookCopy  WHERE book.isbn =:isbn";
+		String sql = "FROM BookCopy  WHERE book.isbn =:isbn";
 		Query query = super.getSession().createQuery(sql).setParameter("isbn", book.getIsbn());
 		List<BookCopy> bookCopyList = new ArrayList<BookCopy>();
 		try {
@@ -106,4 +107,11 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 		return bookCopyList;
 	}
 
+	@Override
+	public Author findAuthorOfBookCopy (BookCopy bookCopy){
+		String sql;
+		sql = "FROM Author WHERE authorId=:id";
+		Query query = super.getSession().createQuery(sql).setParameter("id", bookCopy.getBook().getAuthor().getAuthorId());
+		return new Author();
+	};
 }

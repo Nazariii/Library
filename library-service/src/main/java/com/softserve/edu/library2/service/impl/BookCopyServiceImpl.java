@@ -54,4 +54,8 @@ public class BookCopyServiceImpl implements BookCopyService{
     public List<BookCopy> findByISBN(Long isbn) {
         return bookCopyDAO.findByISBN(isbn);
     }
+
+    @Override
+    @Transactional
+    public Author findAuthorOfBookCopy (BookCopy bookCopy){return bookCopyDAO.findAuthorOfBookCopy(bookCopy);}
 }
