@@ -51,7 +51,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
     @Override
     public List<Reader> findByAddress(Address address) {
         String sql = "SELECT reader FROM Reader AS reader JOIN reader.address AS address WHERE address LIKE :address";
-        Query query = HibernateUtil.getSession().createQuery(sql).setEntity("address", address);
+        Query query = super.getSession().createQuery(sql).setEntity("address", address);
         List<Reader> listReaders = Collections.emptyList();
         try {
             listReaders = findMany(query);
@@ -69,7 +69,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
     @Override
     public Reader findByTelephone(String telephone) {
         String sql = "FROM Reader WHERE telephone = :telephone";
-        Query query = HibernateUtil.getSession().createQuery(sql).setString("telephone", telephone);
+        Query query = super.getSession().createQuery(sql).setString("telephone", telephone);
         Reader reader = null;
         try {
             reader = findOne(query);
@@ -87,7 +87,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
     @Override
     public List<Reader> findByBirthDate(Date birthDate){
         String sql = "FROM Reader WHERE birthDate = :birthDate";
-        Query query = HibernateUtil.getSession().createQuery(sql).setDate("birthDate", birthDate);
+        Query query = super.getSession().createQuery(sql).setDate("birthDate", birthDate);
         List<Reader> listReaders = Collections.emptyList();
         try {
             listReaders = findMany(query);
@@ -104,8 +104,8 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      */
     @Override
     public List<Reader> findByBook(String name) {
-        String sql = "FROM Reader AS reader JOIN reader.bookCopyReaders AS bCopy WHERE bCopy.book.name = :name";
-        Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);
+        String sql = "SELECT reader FROM Reader AS reader JOIN reader.bookCopyReaders AS bCopy WHERE bCopy.book.name = :name";
+        Query query = super.getSession().createQuery(sql).setString("name", name);
         List<Reader> listReaders = Collections.emptyList();
         try {
             listReaders = findMany(query);
