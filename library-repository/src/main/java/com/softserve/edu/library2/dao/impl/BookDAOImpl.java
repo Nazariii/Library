@@ -3,11 +3,11 @@ package com.softserve.edu.library2.dao.impl;
 import com.softserve.edu.library2.dao.AbstractDAO;
 import com.softserve.edu.library2.dao.BookDAO;
 import com.softserve.edu.library2.dao.entities.Book;
-
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -17,6 +17,7 @@ import java.util.List;
  * @author Taras
  *
  */
+@Repository
 public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 
 	private static Logger logger = org.apache.logging.log4j.LogManager.getLogger();
@@ -31,7 +32,7 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 	@Override
 	public Book getBookByName(String name) {
 		String sql = "FROM Book WHERE name = :name";
-		Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);
+		Query query = super.getSession().createQuery(sql).setString("name", name);
 		Book book = null;
 		try {
 			book = findOne(query);
@@ -51,7 +52,7 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 	@Override
 	public Book getBookByISBN(long isbn) {
 		String sql = "FROM Book WHERE isbn = :isbn";
-		Query query = HibernateUtil.getSession().createQuery(sql).setLong("isbn", isbn);
+		Query query = super.getSession().createQuery(sql).setLong("isbn", isbn);
 		Book book = null;
 		try {
 			book = findOne(query);
@@ -77,7 +78,7 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 
 		String sql = "FROM Book WHERE year = :year";
-		Query query = HibernateUtil.getSession().createQuery(sql).setInteger("year", year);
+		Query query = super.getSession().createQuery(sql).setInteger("year", year);
 		List<Book> books = Collections.emptyList();
 		try {
 			books = findMany(query);
@@ -116,7 +117,7 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 	@Override
 	public List<Book> getBooksByAuthor(String firstName, String lastName) {
 		String sql = "FROM Book as book WHERE book.author.firstName = :firstName AND book.author.lastName = :lastName";
-		Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
+		Query query = super.getSession().createQuery(sql).setString("firstName", firstName)
 				.setString("lastName", lastName);
 		List<Book> books = Collections.emptyList();
 		try {
@@ -128,17 +129,16 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 	}
 
 	/**
-	 * Method finds all books published by
-	 * 
-	 * @param publisher}
+	 * Method finds all books published by {@param publisher}
 	 * 
 	 * @param publisher
 	 *            - publisher
 	 * @return {@link List<Book>}
 	 */
+	@Override
 	public List<Book> getBooksByPublisher(String publisher) {
 		String sql = "FROM Book WHERE publication = :publisher";
-		Query query = HibernateUtil.getSession().createQuery(sql).setString("publisher", publisher);
+		Query query = super.getSession().createQuery(sql).setString("publisher", publisher);
 		List<Book> books = Collections.emptyList();
 		try {
 			books = findMany(query);
@@ -147,11 +147,25 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return books;
 	}
-
+	
+	/**
+	 * Method finds all books by reader.
+	 * 
+	 * @param firstName
+	 * 				- reader's first name.
+	 * 
+	 * @param lastName 
+	 * 				- reader's last name.
+	 * 
+	 * @return {@link List<Book>}
+	 */
+	@Override
 	public List<Book> getBooksByReader(String firstName, String lastName) {
-		String sql = "FROM Book as book JOIN book.bookCopyReaders as bcr WHERE bcr.reader.firstName = :firstName "
+		String sql = "SELECT bcr.book FROM BookCopyReader as bcr WHERE bcr.reader.firstName = :firstName "
 				+ "AND bcr.reader.lastName = :lastName";
-		Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
+		//String sql = "FROM Book as book JOIN bookCopyReaders as bcr WHERE bcr.reader.firstName = :firstName "
+		//		+ "AND bcr.reader.lastName = :lastName";
+		Query query = super.getSession().createQuery(sql).setString("firstName", firstName)
 				.setString("lastName", lastName);
 		List<Book> books = Collections.emptyList();
 		try {

@@ -26,7 +26,7 @@ public class BookDAOImplTest {
 	private static BookDAOImpl bookDAOImpl = new BookDAOImpl();
 	
 	@Before
-	public void init() {	
+	public void setUp() {	
 		book.setYear(BOOK_YEAR);
 		book.setPublication(BOOK_PUBLISHER);
 		
@@ -35,6 +35,13 @@ public class BookDAOImplTest {
 		HibernateUtil.commitTransaction();
 	}
 
+	@After
+	public void tearDown() {
+		HibernateUtil.beginTransaction();
+		bookDAOImpl.delete(book);
+		HibernateUtil.commitTransaction();
+	}
+	
 	@Test 
 	public void testGetBookByName() {
 		HibernateUtil.beginTransaction();
@@ -85,11 +92,15 @@ public class BookDAOImplTest {
 	
 	@Test
 	public void testGetBooksByAuthor() {
+		final String firstName = "Ivan";
+		final String lastName = "Franko";
+		final String bookName = "Kamenyari";
+		
 		HibernateUtil.beginTransaction();
-		List<Book> books = bookDAOImpl.getBooksByAuthor("Ivan", "Franko");
+		List<Book> books = bookDAOImpl.getBooksByAuthor(firstName, lastName);
 		HibernateUtil.commitTransaction();
 		
-		assertTrue(books.size() > 0 && books.get(0).getName().equals("Kamenyari"));
+		assertTrue(books.size() > 0 && books.get(0).getName().equals(bookName));
 	}
 	
 	@Test
@@ -104,17 +115,15 @@ public class BookDAOImplTest {
 	
 	@Test
 	public void testGetBooksByReader() {
+		final String firstName = "Petro";
+		final String lastName = "Las";
+		final String bookName = "Kamenyari";
+		
 		HibernateUtil.beginTransaction();
-		List<Book> books = bookDAOImpl.getBooksByReader("Petro", "Las");
+		List<Book> books = bookDAOImpl.getBooksByReader(firstName, lastName);
 		HibernateUtil.commitTransaction();
 		
-		assertTrue(true);
+		assertTrue(books.size() > 0 && books.get(0).getName().equals(bookName));
 	}
 	
-	@After
-	public void undoChanges() {
-		HibernateUtil.beginTransaction();
-		bookDAOImpl.delete(book);
-		HibernateUtil.commitTransaction();
-	}
 }
