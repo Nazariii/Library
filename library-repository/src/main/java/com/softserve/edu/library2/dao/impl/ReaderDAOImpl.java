@@ -9,6 +9,7 @@ import com.softserve.edu.library2.dao.util.HibernateUtil;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collections;
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.List;
 /**
  * @author Dmytro Brylyuk
  */
+@Repository
 public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements ReaderDAO {
 
     private static Logger logger = org.apache.logging.log4j.LogManager.getLogger();
@@ -27,9 +29,10 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      * @param lastName - lastname of reader
      * @return List of readers
      */
+    @Override
     public List<Reader> findByName(String firstName, String lastName) {
         String sql = "FROM Reader WHERE firstName = :firstName AND lastName = :lastName";
-        Query query = HibernateUtil.getSession().createQuery(sql).setString("firstName", firstName)
+        Query query = super.getSession().createQuery(sql).setString("firstName", firstName)
                 .setString("lastName", lastName);
         List<Reader> listReaders = Collections.emptyList();
         try {
@@ -45,6 +48,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      * @param address - object of entity Address
      * @return List of readers
      */
+    @Override
     public List<Reader> findByAddress(Address address) {
         String sql = "SELECT reader FROM Reader AS reader JOIN reader.address AS address WHERE address LIKE :address";
         Query query = HibernateUtil.getSession().createQuery(sql).setEntity("address", address);
@@ -62,6 +66,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      * @param telephone - telephone number of reader
      * @return - object reader
      */
+    @Override
     public Reader findByTelephone(String telephone) {
         String sql = "FROM Reader WHERE telephone = :telephone";
         Query query = HibernateUtil.getSession().createQuery(sql).setString("telephone", telephone);
@@ -79,6 +84,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      * @param birthDate - birth date of readers/reader
      * @return - List of readers
      */
+    @Override
     public List<Reader> findByBirthDate(Date birthDate){
         String sql = "FROM Reader WHERE birthDate = :birthDate";
         Query query = HibernateUtil.getSession().createQuery(sql).setDate("birthDate", birthDate);
@@ -96,6 +102,7 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
      * @param name - title of book
      * @return - List of readers
      */
+    @Override
     public List<Reader> findByBook(String name) {
         String sql = "FROM Reader AS reader JOIN reader.bookCopyReaders AS bCopy WHERE bCopy.book.name = :name";
         Query query = HibernateUtil.getSession().createQuery(sql).setString("name", name);

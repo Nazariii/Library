@@ -1,4 +1,4 @@
-package com.softserve.edu.library2.dao;
+package com.softserve.edu.library2.service;
 
 import com.softserve.edu.library2.dao.entities.Address;
 import com.softserve.edu.library2.dao.entities.Reader;
@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Dmytro Brylyuk
+ * Created by Dmytro on 8/25/2015.
  */
-public interface ReaderDAO extends GenericDAO<Reader, Integer> {
+public interface ReaderService {
 
     public List<Reader> findByName(String firstName, String lastName);
 
