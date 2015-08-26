@@ -17,11 +17,7 @@ body, .form-control {
 }
 
 .generic-container {
-	position: fixed;
-	width: 80%;
-	margin-left: 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 60px;
 	padding: 20px;
 	background-color: #EAE7E7;
 	border: 1px solid #ddd;
