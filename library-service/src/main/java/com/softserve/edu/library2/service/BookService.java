@@ -1,18 +1,10 @@
-/**
- * 
- */
-package com.softserve.edu.library2.dao;
+package com.softserve.edu.library2.service;
 
 import java.util.List;
 
 import com.softserve.edu.library2.dao.entities.Book;
 
-/**
- * @author Назік
- *
- */
-public interface BookDAO extends GenericDAO<Book, Integer>{
-
+public interface BookService {
 	Book getBookByName(String name);
 	
 	Book getBookByISBN(long isbn);
@@ -26,5 +18,4 @@ public interface BookDAO extends GenericDAO<Book, Integer>{
 	List<Book> getBooksByPublisher(String publisher);
 	
 	List<Book> getBooksByReader(String firstName, String lastName);
-	
 }

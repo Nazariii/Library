@@ -18,4 +18,12 @@ public interface AuthorService {
 	public Author findByBook(String name);
 
 	public List<Author> findSubauthorByBook(String name);
+
+	public Author findById(Integer id);
+
+	public void save(Author author);
+
+	public void update(Author author);
+	
+	public List<Author> findAll();
 }
