@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by vova on 25.08.15.
  */
+
 public interface BookCopyService {
     public List<BookCopy> findByName(String name);
 
@@ -24,5 +25,6 @@ public interface BookCopyService {
     public List<BookCopy> findByISBN(Long isbn);
 
     public Author findAuthorOfBookCopy (BookCopy bookCopy);
-    
+
+    public List<BookCopy> findAll();
 }

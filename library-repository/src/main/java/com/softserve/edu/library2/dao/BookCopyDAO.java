@@ -30,4 +30,6 @@ public interface BookCopyDAO extends GenericDAO<BookCopy, Integer> {
 
 	public Author findAuthorOfBookCopy (BookCopy bookCopy);
 
+	public List<BookCopy> findAll();
+
 }

@@ -61,4 +61,12 @@ public class BookCopyServiceImpl implements BookCopyService{
     @Override
     @Transactional
     public Author findAuthorOfBookCopy (BookCopy bookCopy){return bookCopyDAO.findAuthorOfBookCopy(bookCopy);}
+
+    @Override
+    @Transactional
+    public List<BookCopy> findAll() {
+        return (List<BookCopy>) bookCopyDAO.findAll();
+    }
+
+
 }
