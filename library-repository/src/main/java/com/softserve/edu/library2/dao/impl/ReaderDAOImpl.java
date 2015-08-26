@@ -114,4 +114,121 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         }
         return listReaders;
     }
+
+    /**
+     * Method to find readers by city
+     * @param city String
+     * @return - List of address by city
+     */
+    @Override
+    public List<Reader> findByAddress(String city) {
+        String sql = "SELECT reader FROM Reader AS reader JOIN reader.address " +
+                "AS address WHERE address.city = :city";
+        Query query = super.getSession().createQuery(sql).setString("city", city);
+        List<Reader> listReaders = Collections.emptyList();
+        try {
+            listReaders = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error" ,e);
+        }
+        return listReaders;
+    }
+
+    /**
+     * Method to find readers by city and region
+     * @param city String
+     * @param region String
+     * @return List of address by city and region
+     */
+    @Override
+    public List<Reader> findByAddress(String city, String region) {
+        String sql = "SELECT reader FROM Reader AS reader JOIN reader.address " +
+                "AS address WHERE address.city = :city AND address.region = :region";
+        Query query = super.getSession().createQuery(sql).setString("city", city)
+                .setString("region", region);
+        List<Reader> listReaders = Collections.emptyList();
+        try {
+            listReaders = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error" ,e);
+        }
+        return listReaders;
+    }
+
+    /**
+     * Method to find readers by city,region and street
+     * @param city String
+     * @param region String
+     * @param street String
+     * @return List of address by city, region and street
+     */
+    @Override
+    public List<Reader> findByAddress(String city, String region, String street) {
+        String sql = "SELECT reader FROM Reader AS reader JOIN reader.address " +
+                "AS address WHERE address.city = :city AND address.region = :region " +
+                "AND address.street = :street";
+        Query query = super.getSession().createQuery(sql).setString("city", city)
+                .setString("region", region).setString("street", street);
+        List<Reader> listReaders = Collections.emptyList();
+        try {
+            listReaders = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error" ,e);
+        }
+        return listReaders;
+    }
+
+    /**
+     * Method to find readers by city,region, street and number of building
+     * @param city String
+     * @param region String
+     * @param street String
+     * @param buildingNumber int
+     * @return List of address by city, region, street and number of building
+     */
+    @Override
+    public List<Reader> findByAddress(String city, String region, String street, int buildingNumber) {
+        String sql = "SELECT reader FROM Reader AS reader JOIN reader.address " +
+                "AS address WHERE address.city = :city AND address.region = :region " +
+                "AND address.street = :street AND address.buildingNumber = :buildingNumber";
+        Query query = super.getSession().createQuery(sql).setString("city", city)
+                .setString("region", region).setString("street", street)
+                .setInteger("buildingNumber", buildingNumber);
+        List<Reader> listReaders = Collections.emptyList();
+        try {
+            listReaders = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error" ,e);
+        }
+        return listReaders;
+    }
+
+    /**
+     * Method to find readers by city,region, street, number of building and number of apartment
+     * @param city String
+     * @param region String
+     * @param street String
+     * @param buildingNumber int
+     * @param apartmentNumber int
+     * @return List of address by city, region, street, number of building and number of apartment
+     */
+    @Override
+    public List<Reader> findByAddress(String city, String region, String street, int buildingNumber,
+                                      int apartmentNumber) {
+        String sql = "SELECT reader FROM Reader AS reader JOIN reader.address " +
+                "AS address WHERE address.city = :city AND address.region = :region " +
+                "AND address.street = :street AND address.buildingNumber = :buildingNumber " +
+                "AND address.apartmentNumber = :apartmentNumber";
+        Query query = super.getSession().createQuery(sql).setString("city", city)
+                .setString("region", region).setString("street", street)
+                .setInteger("buildingNumber", buildingNumber)
+                .setInteger("apartmentNumber", apartmentNumber);
+        List<Reader> listReaders = Collections.emptyList();
+        try {
+            listReaders = findMany(query);
+        } catch (Exception e) {
+            logger.error("Error" ,e);
+        }
+        return listReaders;
+    }
 }

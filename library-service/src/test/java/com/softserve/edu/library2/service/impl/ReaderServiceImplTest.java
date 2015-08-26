@@ -73,4 +73,54 @@ public class ReaderServiceImplTest {
             assertTrue(fistName.equals("Kate") || fistName.equals("Pavlo"));
         }
     }
+
+    @Test
+    public void testFindByAddress1() throws Exception {
+        final String city = "Lviv";
+        List<Reader> listReaders = readerService.findByAddress(city);
+        assertEquals(4, listReaders.size());
+    }
+
+    @Test
+    public void testFindByAddress2() throws Exception {
+        final String city = "Lviv";
+        final String region = "Lviv";
+        List<Reader> listReaders = readerService.findByAddress(city, region);
+    assertEquals(4, listReaders.size());
+}
+
+    @Test
+    public void testFindByAddress3() throws Exception {
+        final String city = "Lviv";
+        final String region = "Lviv";
+        final String street = "Bandery";
+        List<Reader> listReaders = readerService.findByAddress(city, region, street);
+        assertEquals(3, listReaders.size());
+    }
+
+    @Test
+    public void testFindByAddress4() throws Exception {
+        final String city = "Lviv";
+        final String region = "Lviv";
+        final String street = "Bandery";
+        final int buildingNumber = 5;
+        List<Reader> listReaders = readerService.findByAddress(city, region, street, buildingNumber);
+        assertEquals(2, listReaders.size());
+    }
+
+    @Test
+    public void testFindByAddress5() throws Exception {
+        final String city = "Lviv";
+        final String region = "Lviv";
+        final String street = "Bandery";
+        final int buildingNumber = 5;
+        final int apartmentNumber = 1;
+        final int apartmentNumberFalse = 5;
+        List<Reader> listReaders = readerService.findByAddress(city, region, street, buildingNumber,
+                apartmentNumber);
+        assertEquals(2, listReaders.size());
+        listReaders = readerService.findByAddress(city, region, street, buildingNumber,
+                apartmentNumberFalse);
+        assertEquals(0, listReaders.size());
+    }
 }

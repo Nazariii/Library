@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -13,7 +14,7 @@ import com.softserve.edu.library2.dao.entities.Address;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 /*
- * @author Taras
+ * @author Taras and Dmytro
  * 
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -21,7 +22,8 @@ public class AddressDAOImplTest {
 	
 	private static Address address = new Address("Kyiv");
 	private static AddressDAOImpl addressDAOImpl = new AddressDAOImpl();
-	
+
+	@Ignore
 	@Test
 	public void stage1_testSave() {		
 		HibernateUtil.beginTransaction();
@@ -86,5 +88,29 @@ public class AddressDAOImplTest {
 		
 		assertFalse(result);
 	}
-	
+
+	@Test
+	public void testFindAddress() throws Exception {
+
+	}
+
+	@Test
+	public void testFindAddress1() throws Exception {
+
+	}
+
+	@Test
+	public void testFindAddress2() throws Exception {
+
+	}
+
+	@Test
+	public void testFindAddress3() throws Exception {
+
+	}
+
+	@Test
+	public void testFindAddress4() throws Exception {
+
+	}
 }
