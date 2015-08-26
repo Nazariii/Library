@@ -24,9 +24,10 @@ public class BookController {
 	BookService bookService;
 	
 	@RequestMapping(value= {"/"},method = RequestMethod.GET)
-	public String listAuthor(ModelMap model) {
+	public String getBookList(ModelMap model) {
 		List<Book> books = bookService.getAllBooks();
 		model.addAttribute("books", books);
 		return "book/booklist";
 	}
+	
 }
