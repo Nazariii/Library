@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.softserve.edu.library2.controllers;
+package com.softserve.edu.library2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
