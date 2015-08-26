@@ -21,13 +21,13 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Library</a>
+				<a class="navbar-brand" href="<c:url value='/'/>">Library</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
+					<li><a href="<c:url value='/authors/list'/>">Authors</a></li>
+					<li><a href="<c:url value='/list_readers'/>">Readers</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -66,8 +66,7 @@
 				</table>
 			</div>
 			<div class="well">
-				<a
-					href="<c:url value='/authors/addauthor'/>" class="btn btn-info " >Add
+				<a href="<c:url value='/authors/addauthor'/>" class="btn btn-info ">Add
 					New Author</a>
 			</div>
 		</div>

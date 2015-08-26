@@ -36,7 +36,7 @@ public class AuthorController {
 	public String listAuthor(ModelMap model) {
 		List<Author> authors = authorService.findAll();
 		model.addAttribute("authors", authors);
-		return "authorlist";
+		return "author/authorlist";
 	}
 
 
@@ -45,14 +45,14 @@ public class AuthorController {
 		Author author = new Author();
 		model.addAttribute("author", author);
 		model.addAttribute("edit", false);
-		return "newauthor";
+		return "author/newauthor";
 	}
 
 	@RequestMapping(value = { "/addauthor" }, method = RequestMethod.POST)
 	public String saveUser(@Valid Author author, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
-			return "newauthor";
+			return "author/newauthor";
 		}
 
 		/*
