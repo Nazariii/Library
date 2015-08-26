@@ -2,6 +2,7 @@ package com.softserve.edu.library2.service.impl;
 
 import com.softserve.edu.library2.dao.AddressDAO;
 import com.softserve.edu.library2.dao.entities.Address;
+import com.softserve.edu.library2.dao.entities.Reader;
 import com.softserve.edu.library2.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -87,5 +88,59 @@ public class AddressServiceImpl implements AddressService {
     public Address findAddress(String city, String region, String street, int buildingNumber,
                                int apartmentNumber) {
         return addressDAO.findAddress(city, region, street, buildingNumber, apartmentNumber);
+    }
+
+    /**
+     * Method to find address by id
+     *
+     * @param id Integer id number
+     * @return address
+     */
+    @Override
+    @Transactional
+    public Address findById(Integer id) {
+        return addressDAO.findByID(Address.class, id);
+    }
+
+    /**
+     * Method to save address in database
+     *
+     * @param address object address
+     */
+    @Override
+    @Transactional
+    public void save(Address address) {
+        addressDAO.save(address);
+    }
+
+    /**
+     * Method to change data about addresses in database
+     *
+     * @param address object address
+     */
+    @Override
+    @Transactional
+    public void update(Address address) {
+        Address entity = addressDAO.findByID(Address.class, address.getAddressId());
+        if (entity != null) {
+            entity.setAddressId(address.getAddressId());
+            entity.setCity(address.getCity());
+            entity.setRegion(address.getRegion());
+            entity.setStreet(address.getStreet());
+            entity.setBuildingNumber(address.getBuildingNumber());
+            entity.setApartmentNumber(address.getApartmentNumber());
+            entity.setReaders(address.getReaders());
+        }
+    }
+
+    /**
+     * Method to select list of all addresses in database
+     *
+     * @return list of address wich are in the database
+     */
+    @Override
+    @Transactional
+    public List<Address> findAll() {
+        return addressDAO.findAll(Address.class);
     }
 }

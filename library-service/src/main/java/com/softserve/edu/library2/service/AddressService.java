@@ -53,4 +53,29 @@ public interface AddressService {
      * @return List of address by city, region, street, number of building and number of apartment
      */
     public Address findAddress (String city, String region, String street, int buildingNumber, int apartmentNumber);
+
+    /**
+     * Method to find address by id
+     * @param id Integer id number
+     * @return address
+     */
+    public Address findById(Integer id);
+
+    /**
+     * Method to save address in database
+     * @param address object address
+     */
+    public void save(Address address);
+
+    /**
+     * Method to change data about addresses in database
+     * @param address object address
+     */
+    public void update (Address address);
+
+    /**
+     * Method to select list of all addresses in database
+     * @return list of address wich are in the database
+     */
+    public List<Address> findAll();
 }

@@ -141,4 +141,59 @@ public class ReaderServiceImpl implements ReaderService{
                                       int apartmentNumber) {
         return readerDAO.findByAddress(city, region, street, buildingNumber, apartmentNumber);
     }
+
+    /**
+     * Method to find reader by id
+     *
+     * @param id Integer id number
+     * @return reader
+     */
+    @Override
+    @Transactional
+    public Reader findById(Integer id) {
+        return readerDAO.findByID(Reader.class, id);
+    }
+
+    /**
+     * Method to save reader in database
+     *
+     * @param reader object reader
+     */
+    @Override
+    @Transactional
+    public void save(Reader reader) {
+        readerDAO.save(reader);
+    }
+
+    /**
+     * Method to change data about reader in database
+     *
+     * @param reader object reader
+     */
+    @Override
+    @Transactional
+    public void update(Reader reader) {
+        Reader entity = readerDAO.findByID(Reader.class, reader.getReaderId());
+        if (entity != null) {
+            entity.setReaderId(reader.getReaderId());
+            entity.setFirstName(reader.getFirstName());
+            entity.setLastName(reader.getLastName());
+            entity.setMiddleName(reader.getMiddleName());
+            entity.setTelephone(reader.getTelephone());
+            entity.setBirthDate(reader.getBirthDate());
+            entity.setAddress(reader.getAddress());
+            entity.setBookCopyReaders(reader.getBookCopyReaders());
+        }
+    }
+
+    /**
+     * Method to select list of all readers in database
+     *
+     * @return
+     */
+    @Override
+    @Transactional
+    public List<Reader> findAll() {
+        return readerDAO.findAll(Reader.class);
+    }
 }

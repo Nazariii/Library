@@ -93,4 +93,28 @@ public interface ReaderService {
      */
     public List<Reader> findByAddress (String city, String region, String street, int buildingNumber, int apartmentNumber);
 
+    /**
+     * Method to find reader by id
+     * @param id Integer id number
+     * @return reader
+     */
+    public Reader findById(Integer id);
+
+    /**
+     * Method to save reader in database
+     * @param reader object reader
+     */
+    public void save(Reader reader);
+
+    /**
+     * Method to change data about reader in database
+     * @param reader object reader
+     */
+    public void update (Reader reader);
+
+    /**
+     * Method to select list of all readers in database
+     * @return
+     */
+    public List<Reader> findAll();
 }
