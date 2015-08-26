@@ -4,50 +4,81 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Author List</title>
-<link href="<c:url value='/static/css/bootstrap.css' />"
-	rel="stylesheet"></link>
+<link href="<c:url value='/static/css/bootstrap.css'/>" rel="stylesheet"></link>
 <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 
 <body>
-	<div class="generic-container">
-		<div class="panel panel-default">
-			<!-- Default panel contents -->
-			<div class="panel-heading">
-				<span class="lead">List of Authors </span>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Library</a>
 			</div>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Firstname</th>
-						<th>Lastname</th>
-						<th width="100"></th>
-						<th width="100"></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${authors}" var="author">
-						<tr>
-							<td>${author.firstName}</td>
-							<td>${author.lastName}</td>
-							<td><a href="<c:url value='/edit-user-${author.authorId}' />"
-								class="btn btn-success 
- 
-custom-width">edit</a></td>
-							<td><a href="<c:url value='/delete-user-${author.authorId}' />"
-								class="btn btn-danger 
- 
-custom-width">delete</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
 		</div>
-		<div class="well">
-			<a href="<c:url value='/newauthor' />">Add New AQuthor</a>
+	</nav>
+	<div class="container">
+		<div class="generic-container">
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+				<div class="panel-heading">
+					<span class="lead">List of Authors </span>
+				</div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Firstname</th>
+							<th>Lastname</th>
+							<th width="100"></th>
+							<th width="100"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${authors}" var="author">
+							<tr>
+								<td>${author.firstName}</td>
+								<td>${author.lastName}</td>
+								<td><a
+									href="<c:url value='/edit-user-${author.authorId}' />"
+									class="btn btn-success custom-width">edit</a></td>
+								<td><a
+									href="<c:url value='/delete-user-${author.authorId}' />"
+									class="btn btn-danger custom-width">delete</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div class="well">
+				<a
+					href="<c:url value='/authors/addauthor'/>" class="btn btn-info " >Add
+					New Author</a>
+			</div>
 		</div>
 	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script type='text/javascript'
+		src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/jquery.min.js'/>"></script>
 </body>
 </html>
