@@ -11,16 +11,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.service.BookService;
 
+/**
+ * 
+ * @author Taras
+ *
+ */
 @Controller
+@RequestMapping("/books")
 public class BookController {
 	
 	@Autowired
 	BookService bookService;
 	
-	@RequestMapping(value= {"/booklist"},method = RequestMethod.GET)
+	@RequestMapping(value= {"/"},method = RequestMethod.GET)
 	public String listAuthor(ModelMap model) {
 		List<Book> books = bookService.getAllBooks();
 		model.addAttribute("books", books);
-		return "booklist";
+		return "book/booklist";
 	}
 }
