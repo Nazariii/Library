@@ -7,14 +7,17 @@ import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 import com.softserve.edu.library2.service.BookCopyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.ws.ServiceMode;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by vova on 25.08.15.
  */
+@Service
 public class BookCopyServiceImpl implements BookCopyService{
     @Autowired
     BookCopyDAO bookCopyDAO;
