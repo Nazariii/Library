@@ -8,6 +8,7 @@ import com.softserve.edu.library2.service.impl.BookCopyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,9 +39,9 @@ public class BookCopyController {
     }
 
 
-    @RequestMapping(value = {"/id"}, method = RequestMethod.GET)
-    public String listBookCopiesById(ModelMap model) {
-        List<BookCopy> bookCopyList = bookCopyService.findAll();
+    @RequestMapping(value = {"/isbn"}, method = RequestMethod.GET)
+    public String listBookCopiesById(ModelMap model, @PathVariable(value = "isbn") Long isbn) {
+        List<BookCopy> bookCopyList = bookCopyService.findByISBN(isbn);
         model.addAttribute("bookcopies", bookCopyList);
         return "bookcopy";
     }
