@@ -20,7 +20,7 @@ public class ReaderListController {
     @Autowired
     ReaderService readerService;
 
-    @RequestMapping(value = {"/list_readers"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/readers/list_readers"}, method = RequestMethod.GET)
     public String  listAuthor(ModelMap modelMap) {
         List<Reader> readers = readerService.findAll();
         modelMap.addAttribute("readers", readers);

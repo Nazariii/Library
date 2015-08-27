@@ -46,16 +46,17 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
 					<li><a href="<c:url value='author/authorlist'/>">Authors</a></li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/list_readers">List of Readers</a></li>
-                        <li><a href="#">List Readers and Books</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Add new Reader</a></li>
-                        <li><a href="#">Edit Reader</a></li>
-                        <li><a href="#">Delete Reader</a></li>
-                    </ul>
-                </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/readers/list_readers">List of Readers</a></li>
+                            <li><a href="#">List Readers and Books</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Add new Reader</a></li>
+                            <li><a href="#">Edit Reader</a></li>
+                            <li><a href="#">Delete Reader</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -70,7 +71,6 @@
 				</ul>
 			</div>
         </div><!--/.nav-collapse -->
-      </div>
     </nav>
 
     <div class="container">
