@@ -28,8 +28,8 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
-					<li><a href="/authors/list">Authors</a></li>
+					<li><a href="<c:url value='/books/'/>">Books</a></li>
+					<li class="active"><a href="/authors/list">Authors</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">

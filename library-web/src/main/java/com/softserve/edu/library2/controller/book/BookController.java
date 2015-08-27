@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.entities.Book;
+import com.softserve.edu.library2.service.AuthorService;
 import com.softserve.edu.library2.service.BookService;
 
 /**
@@ -27,6 +28,9 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 	
+	@Autowired
+	AuthorService authorService;
+	
 	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
 	public String getBookList(ModelMap model) {
 		List<Book> books = bookService.getAllBooks();
@@ -37,8 +41,10 @@ public class BookController {
 	@RequestMapping(value = {"/add"}, method = RequestMethod.GET)
 	public String addBook(ModelMap model) {
 		Book book = new Book();
+		List<Author> authorList = authorService.findAll();
+		
 		model.addAttribute("book", book);
-		model.addAttribute("edit", false);
+		model.addAttribute("authorList", authorList);
 		return "book/addbook";
 	}
 	
