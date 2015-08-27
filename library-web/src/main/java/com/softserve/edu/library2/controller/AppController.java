@@ -31,9 +31,7 @@ public class AppController {
 	MessageSource messageSource;*/
 	
 	@RequestMapping(value= {"/"},method = RequestMethod.GET)
-	public String listAuthor(ModelMap model) {
-		List<Author> authors = authorService.findAll();
-		model.addAttribute("authors",authors);
+	public String showIndex(ModelMap model) {
 		return "index";
 	}
 	

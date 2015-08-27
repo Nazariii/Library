@@ -4,6 +4,7 @@
 package com.softserve.edu.library2.config;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -37,4 +38,13 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		characterEncodingFilter.setForceEncoding(true);
 		return new Filter[] { characterEncodingFilter };
 	}
+
+	/**
+	 * Add handling 404 Exception
+	 */
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+	}
+
 }
