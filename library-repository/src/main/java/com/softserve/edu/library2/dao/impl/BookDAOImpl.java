@@ -132,6 +132,20 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		return books;
 	}
 
+	@Override
+	public List<Book> getBooksByAuthorId(Integer id) {
+		String sql = "FROM Book as book WHERE book.author.authorId = :id";
+		Query query = super.getSession().createQuery(sql).setInteger("id", id);
+		List<Book> books = Collections.emptyList();
+		try {
+			books = findMany(query);
+		} catch (Exception e) {
+			logger.error("Error", e);
+		}
+		return books;
+	}
+
+	
 	/**
 	 * Method finds all books published by {@param publisher}
 	 * 
@@ -183,5 +197,6 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		}
 		return books;
 	}
+
 
 }

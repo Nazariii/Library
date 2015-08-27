@@ -31,27 +31,27 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
+					<li><a href="<c:url value='/books/booklist'/>">Books</a></li>
 					<li><a href="/authors/list">Authors</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
+					<li class="dropdown active"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
 							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/readers/edit_reader">Add new Reader</a></li>
-
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Addresses<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">List of Addresses</a></li>
 							<li><a href="#">List Readers and Addresses</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Add new Address</a></li>
-						</ul>
-					</li>
+						</ul></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -101,12 +101,14 @@ custom-width">delete</a></td>
 			</div>
 			<div class="well">
 				<a href="<c:url value='/readers/new_reader'/>" class="btn btn-info ">Add
-					New Author</a>
+					New Reader</a>
 			</div>
 		</div>
 	</div>
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type='text/javascript' src="<c:url value='/static/js/jquery.min.js'/>"></script>
-	<script type='text/javascript' src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/jquery.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
 </body>
 </html>
