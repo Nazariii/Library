@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -79,6 +79,8 @@
         </table>
     </div>
 </div>
+
+<div class="generic-container">
 <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading">

@@ -43,6 +43,15 @@ public class BookCopy implements java.io.Serializable {
 		this.bookCopyReaders = bookCopyReaders;
 	}
 
+	public BookCopy(Book book, Character isPresent, Date returningDate, Date borrowingDate
+					) {
+		this.book = book;
+		this.isPresent = isPresent;
+		this.returningDate = returningDate;
+		this.borrowingDate = borrowingDate;
+		this.bookCopyReaders = null;
+	}
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "book_copy_id", unique = true, nullable = false)
@@ -93,7 +102,7 @@ public class BookCopy implements java.io.Serializable {
 		this.borrowingDate = borrowingDate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookCopy", cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookCopy", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	public Set<BookCopyReader> getBookCopyReaders() {
 		return this.bookCopyReaders;
 	}

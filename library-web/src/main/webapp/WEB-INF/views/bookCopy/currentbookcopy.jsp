@@ -98,7 +98,7 @@
                 <tr>
                     <td>${bookcopy.book.name}</td>
                     <td><a
-                            href="<c:url value='/delete-user-${author.authorId}' />"
+                            href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
                             class="btn btn-danger custom-width">delete</a></td>
                 </tr>
                 </c:if>
@@ -130,7 +130,7 @@
                 <td>${bookcopy.borrowingDate}</td>
                 <td>${bookcopy.returningDate}</td>
                 <td><a
-                        href="<c:url value='/delete-user-${author.authorId}' />"
+                        href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
                         class="btn btn-danger custom-width">delete</a></td>
             </tr>
             </c:if>
@@ -140,7 +140,7 @@
         </c:if>
 
         <div class="well">
-            <a href="<c:url value='/'/>" class="btn btn-info ">Add
+            <a href="<c:url value='/bookcopies/addbookcopy-${isbn}'/>" class="btn btn-info ">Add
                 New BookCopy</a>
         </div>
     </div>

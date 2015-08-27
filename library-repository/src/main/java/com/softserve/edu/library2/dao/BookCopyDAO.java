@@ -5,10 +5,12 @@ package com.softserve.edu.library2.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
+import com.softserve.edu.library2.dao.entities.BookCopyReader;
 
 /**
  * @author Назік
@@ -31,5 +33,9 @@ public interface BookCopyDAO extends GenericDAO<BookCopy, Integer> {
 	public Author findAuthorOfBookCopy (BookCopy bookCopy);
 
 	public List<BookCopy> findAll();
+
+	public void deleteById(Integer id);
+
+	public void delete(Set<BookCopyReader> bookCopyReaders);
 
 }
