@@ -4,13 +4,14 @@
 package com.softserve.edu.library2.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 /**
  * @author Назік
@@ -19,12 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 public abstract class AbstractDAO<T, ID extends Serializable> implements GenericDAO<T, ID> {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	protected Session getSession() {
-		//return HibernateUtil.getSession();
+		// return HibernateUtil.getSession();
 		return sessionFactory.getCurrentSession();
 	}
 
@@ -84,4 +85,9 @@ public abstract class AbstractDAO<T, ID extends Serializable> implements Generic
 		return (T) getSession().get(clazz, id);
 	}
 
+	@SuppressWarnings("unchecked")
+	protected Criteria createEntityCriteria() {
+		return getSession().createCriteria(
+				(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1]);
+	}
 }

@@ -72,4 +72,9 @@ public class AuthorServiceImpl implements AuthorService {
 		return authorDAO.findAll(Author.class);
 	}
 
+	@Override
+	@Transactional
+	public void deleteById(Integer id) {
+		authorDAO.deleteById(id);
+	}
 }

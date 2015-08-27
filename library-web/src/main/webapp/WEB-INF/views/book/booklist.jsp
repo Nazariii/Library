@@ -22,11 +22,11 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Library</a>
+				<a class="navbar-brand" href="<c:url value='/'/>">Library</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
+					<li class="active"><a href="<c:url value='/books/booklist'/>">Books</a></li>
 					<li><a href="/authors/list">Authors</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
@@ -71,7 +71,7 @@
 					<tbody>
 						<c:forEach items="${books}" var="book">
 							<tr>
-								<td>${book.name}</td>
+								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
 								<td>${book.author.firstName} ${book.author.lastName}</td>
 								<td>${book.year}</td>
 								<td><a href="<c:url value='/edit-book-${book.isbn}' />"
@@ -89,7 +89,7 @@ custom-width">delete</a></td>
 			</div>
 		</div>
 		<div class="well">
-			<a href="<c:url value='/books/addbook'/>" class="btn btn-info ">Add
+			<a href="<c:url value='/books/add'/>" class="btn btn-info ">Add
 				new book</a>
 		</div>
 	</div>

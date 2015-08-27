@@ -5,6 +5,8 @@ import java.util.List;
 import com.softserve.edu.library2.dao.entities.Book;
 
 public interface BookService {
+	void save(Book book);
+	
 	Book getBookByName(String name);
 	
 	Book getBookByISBN(long isbn);
@@ -14,6 +16,8 @@ public interface BookService {
 	List<Book> getAllBooks();
 	
 	List<Book> getBooksByAuthor(String firstName, String lastName);
+	
+	List<Book> getBooksByAuthorId(Integer id);
 	
 	List<Book> getBooksByPublisher(String publisher);
 	

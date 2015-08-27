@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements BookCopyDAO {
+public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements BookCopyDAO {
 
 	private static Logger logger = LogManager.getLogger();
 
@@ -116,7 +116,8 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 	public Author findAuthorOfBookCopy(BookCopy bookCopy) {
 		String sql;
 		sql = "FROM Author WHERE authorId=:id";
-		Query query = super.getSession().createQuery(sql).setParameter("id", bookCopy.getBook().getAuthor().getAuthorId());
+		Query query = super.getSession().createQuery(sql).setParameter("id",
+				bookCopy.getBook().getAuthor().getAuthorId());
 		return new Author();
 	}
 

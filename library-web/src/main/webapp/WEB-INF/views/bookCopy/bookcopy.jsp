@@ -12,8 +12,8 @@
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 
-<>
 
+<body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,14 +28,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown"><a href="<c:url value='/'/>">Books</a></li>
-                <ul class="dropdown-menu">
-                    <li><a href="/">List of Books</a></li>
-                    <li><a href="/bookcopies/list">Avaivable Books</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Add new Book</a></li>
-                    <li><a href="#">Add new Book Copy</a></li>
-                </ul>
+                <li class="active"><a href="<c:url value='/books/booklist'/>">Books</a></li>
                 <li><a href="/authors/list">Authors</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
@@ -57,10 +50,9 @@
                 </li>
             </ul>
         </div>
-        </div>
-    </nav>
         <!--/.nav-collapse -->
-
+    </div>
+</nav>
 <div class="generic-container">
     <div class="panel panel-default">
         <!-- Default panel contents -->

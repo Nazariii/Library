@@ -26,4 +26,6 @@ public interface AuthorService {
 	public void update(Author author);
 	
 	public List<Author> findAll();
+	
+	public void deleteById(Integer id);
 }
