@@ -29,4 +29,5 @@ public interface BookDAO extends GenericDAO<Book, Integer>{
 	
 	List<Book> getBooksByReader(String firstName, String lastName);
 	
+	void deleteByIsbn(long isbn);
 }
