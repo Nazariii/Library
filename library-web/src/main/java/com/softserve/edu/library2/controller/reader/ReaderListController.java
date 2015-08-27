@@ -65,8 +65,6 @@ public class ReaderListController {
 
     @RequestMapping(value = {"/new_reader"}, method = RequestMethod.POST)
     public String saveReader(@Valid Reader reader, BindingResult result, ModelMap modelMap) {
-
-
         readerService.save(reader);
         modelMap.addAttribute("success", "User" + reader.getFirstName() + " " + reader.getLastName() + " "
         + reader.getMiddleName() + " " + reader.getTelephone() + " " + reader.getBirthDate() + " registered successfully");
@@ -82,7 +80,8 @@ public class ReaderListController {
     }
 
     @RequestMapping(value = {"/edit-reader-{id}"}, method = RequestMethod.POST)
-    public String updateReader (@Valid Reader reader, BindingResult result, ModelMap modelMap, @PathVariable String id) {        readerService.update(reader);
+    public String updateReader (@Valid Reader reader, BindingResult result, ModelMap modelMap, @PathVariable String id) {
+        readerService.update(reader);
         modelMap.addAttribute("success", "User" + reader.getFirstName() + " " + reader.getLastName() + " "
                 + reader.getMiddleName() + " " + reader.getTelephone() + " " + reader.getBirthDate() + " update successfully");
         return "redirect:/readers/list_readers";

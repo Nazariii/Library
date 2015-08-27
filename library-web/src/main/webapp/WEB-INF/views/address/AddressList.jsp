@@ -38,18 +38,18 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
-							<li><a href="#">List Readers and Books</a></li>
+							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Add new Reader</a></li>
+							<li><a href="/readers/new_reader">Add new Reader</a></li>
 						</ul>
 					</li>
-					<li class="dropdown active">
+					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">List of Addresses</a></li>
-							<li><a href="#">List Readers and Addresses</a></li>
+							<li><a href="/addresses/list_addresses">List of Addresses</a></li>
+							<li><a href="/addresses/list_readers_addresses">List Readers and Addresses</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Add new Address</a></li>
+							<li><a href="/addresses/new_address">Add new Address</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -86,12 +86,12 @@
 								<td>${address.buildingNumber}</td>
 								<td>${address.apartmentNumber}</td>
 								<td><a
-									href="<c:url value='/edit-user-${address.addressId}' />"
+									href="<c:url value='/addresses/edit-address-${address.addressId}' />"
 									class="btn btn-success
 
 custom-width">edit</a></td>
 								<td><a
-									href="<c:url value='/delete-user-${address.addressId}' />"
+									href="<c:url value='/addresses/delete-address-${address.addressId}' />"
 									class="btn btn-danger
 
 custom-width">delete</a></td>
@@ -101,7 +101,8 @@ custom-width">delete</a></td>
 				</table>
 			</div>
 			<div class="well">
-				<%--<a href="<c:url value='/reader/new_reader' />">Add New AQuthor</a>--%>
+				<a href="<c:url value='/addresses/new_address'/>" class="btn btn-info ">Add
+					New Reader</a>
 			</div>
 		</div>
 	</div>

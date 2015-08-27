@@ -85,4 +85,6 @@ public interface AddressService {
      * @return
      */
     public Integer findIdByAddress(Address address);
+
+    public void deleteById(Integer id);
 }

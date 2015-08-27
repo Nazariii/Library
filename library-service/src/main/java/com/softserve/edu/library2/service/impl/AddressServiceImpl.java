@@ -157,4 +157,10 @@ public class AddressServiceImpl implements AddressService {
                 address.getStreet(), address.getBuildingNumber(),
                 address.getApartmentNumber()).getAddressId();
     }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id){
+        addressDAO.deleteById(id);
+    }
 }

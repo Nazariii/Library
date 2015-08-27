@@ -238,12 +238,6 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         if (id == null) {
             throw logger.throwing(new NullPointerException("Reader id to delete is null"));
         }
-
-		/*
-		 * Criteria crit = createEntityCriteria();
-		 * crit.add(Restrictions.eq("authorId", id)); Author author = (Author)
-		 * crit.uniqueResult(); delete(author);
-		 */
         Reader reader = findByID(Reader.class, id);
         List<Reader> listReaders= findByAddress(reader.getAddress());
         if (listReaders.size() == 1) {

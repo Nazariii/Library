@@ -3,10 +3,12 @@ package com.softserve.edu.library2.dao.impl;
 import com.softserve.edu.library2.dao.AbstractDAO;
 import com.softserve.edu.library2.dao.AddressDAO;
 import com.softserve.edu.library2.dao.entities.Address;
+import com.softserve.edu.library2.dao.entities.Reader;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.List;
 
@@ -133,5 +135,18 @@ public class AddressDAOImpl extends AbstractDAO<Address, Integer> implements Add
             logger.error("Error" ,e);
         }
         return address;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        if (id == null) {
+            throw logger.throwing(new NullPointerException("Reader id to delete is null"));
+        }
+        Address address = findByID(Address.class, id);
+        if (address == null) {
+            throw new EntityNotFoundException("Reader not found for deleting");
+        }
+        delete(address);
+
     }
 }

@@ -58,4 +58,5 @@ public interface AddressDAO extends GenericDAO<Address, Integer> {
      */
     public Address findAddress (String city, String region, String street, int buildingNumber, int apartmentNumber);
 
+    public void deleteById(Integer id);
 }
