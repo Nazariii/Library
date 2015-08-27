@@ -103,8 +103,8 @@ custom-width">delete</a></td>
                   <tr>
                       <td></td>
                       <td></td>
-                  <td>${entryValue.author}</td>
                   <td>${entryValue.name}</td>
+                      <td>${entryValue.author.lastName} ${entryValue.author.firstName}</td>
                   <td>${entryValue.publication}</td>
                   <td>${entryValue.year}</td>
                   <td>${entryValue.pageCount}</td>

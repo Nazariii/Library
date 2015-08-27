@@ -78,4 +78,11 @@ public interface AddressService {
      * @return list of address wich are in the database
      */
     public List<Address> findAll();
+
+    /**
+     * Find id of inserted address
+     * @param address
+     * @return
+     */
+    public Integer findIdByAddress(Address address);
 }

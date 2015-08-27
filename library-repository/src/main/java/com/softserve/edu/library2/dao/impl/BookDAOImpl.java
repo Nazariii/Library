@@ -177,6 +177,10 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		} catch (Exception e) {
 			logger.error("Error", e);
 		}
+
+		for (Book book : books){
+			Hibernate.initialize(book.getAuthor());
+		}
 		return books;
 	}
 

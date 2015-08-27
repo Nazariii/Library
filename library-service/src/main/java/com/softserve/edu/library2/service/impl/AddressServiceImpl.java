@@ -143,4 +143,18 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> findAll() {
         return addressDAO.findAll(Address.class);
     }
+
+    /**
+     * Find id of inserted address
+     *
+     * @param address
+     * @return
+     */
+    @Override
+    @Transactional
+    public Integer findIdByAddress(Address address) {
+        return findAddress(address.getCity(), address.getRegion(),
+                address.getStreet(), address.getBuildingNumber(),
+                address.getApartmentNumber()).getAddressId();
+    }
 }
