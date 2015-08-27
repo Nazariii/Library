@@ -4,10 +4,12 @@
 package com.softserve.edu.library2.service.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -67,5 +69,12 @@ public class AuthorServiceImplTest {
 		author.setFirstName("Dmytro111");
 		authorService.update(author);
 		assertEquals("Dmytro111", author.getFirstName());
+	}
+
+	@Ignore
+	@Test
+	public void testDeleteById() {
+		authorService.deleteById(16);
+		assertTrue(true);
 	}
 }
