@@ -4,9 +4,10 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Author List</title>
-<link href="<c:url value='/static/css/bootstrap.css'/>" rel="stylesheet"></link>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Book List</title>
+<link href="<c:url value='/static/css/bootstrap.css' />"
+	rel="stylesheet"></link>
 <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 
@@ -25,8 +26,8 @@
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="<c:url value='/books/booklist'/>">Books</a></li>
-					<li class="active"><a href="/authors/list">Authors</a></li>
+					<li class="active"><a href="<c:url value='/books/booklist'/>">Books</a></li>
+					<li><a href="/authors/list">Authors</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -36,7 +37,7 @@
 							<li><a href="#">Add new Reader</a></li>
 						</ul>
 					</li>
-					<li class="dropdown" >
+					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">List of Addresses</a></li>
@@ -55,45 +56,41 @@
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
 				<div class="panel-heading">
-					<span class="lead">List of Authors </span>
+					<span class="lead">Books by ${author.firstName} ${author.lastName}</span>
 				</div>
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>First name</th>
-							<th>Last name</th>
+							<th>Title</th>
+							<th>Year</th>
 							<th width="100"></th>
 							<th width="100"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${authors}" var="author">
+						<c:forEach items="${books}" var="book">
 							<tr>
-								<td>${author.firstName}</td>
-								<td>${author.lastName}</td>
-								<td><a
-									href="<c:url value='/books/books-author-${author.authorId}' />"
-									class="btn btn-primary custom-width">books</a></td>
-								<td><a
-									href="<c:url value='/authors/edit-author-${author.authorId}' />"
-									class="btn btn-success custom-width">edit</a></td>
-								<td><a
-									href="<c:url value='/authors/delete-author-${author.authorId}' />"
-									class="btn btn-danger custom-width">delete</a></td>
+								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
+								<td>${book.year}</td>
+								<td><a href="<c:url value='/edit-book-${book.isbn}' />"
+									class="btn btn-success 
+ 
+custom-width">edit</a></td>
+								<td><a href="<c:url value='/delete-book-${book.isbn}' />"
+									class="btn btn-danger 
+ 
+custom-width">delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div class="well">
-				<a href="<c:url value='/authors/addauthor'/>" class="btn btn-info ">Add
-					New Author</a>
-			</div>
+		</div>
+		<div class="well">
+			<a href="<c:url value='/books/add-${author.authorId}'/>" class="btn btn-info ">Add
+				new book</a>
 		</div>
 	</div>
-
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type='text/javascript' src="<c:url value='/static/js/jquery.min.js'/>"></script>
 	<script type='text/javascript' src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
