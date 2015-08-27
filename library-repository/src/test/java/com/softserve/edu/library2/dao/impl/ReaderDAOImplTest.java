@@ -6,6 +6,7 @@ import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 import com.softserve.edu.library2.dao.entities.Reader;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.*;
@@ -19,6 +20,7 @@ import static org.junit.Assert.*;
 public class ReaderDAOImplTest {
     private static ReaderDAOImpl readerDAOImpl = new ReaderDAOImpl();
 
+    @Ignore
     @Test
     public void testSave() {
         Reader reader = new Reader("Eric", "Cartman");
@@ -29,6 +31,7 @@ public class ReaderDAOImplTest {
 
     }
 
+    @Ignore
     @Test
     public void testFindByName() throws Exception {
         final String firstName = "Petro";
@@ -44,6 +47,7 @@ public class ReaderDAOImplTest {
 
     }
 
+    @Ignore
     @Test
     public void testFindByAddress() throws Exception {
         final Address address = new Address("Lviv");
@@ -56,6 +60,7 @@ public class ReaderDAOImplTest {
         }
     }
 
+    @Ignore
     @Test
     public void testFindTelephone() throws Exception {
         final String telephone = "0934862226";
@@ -65,6 +70,7 @@ public class ReaderDAOImplTest {
         assertEquals(telephone, reader.getTelephone());
     }
 
+    @Ignore
     @Test
     public void testFindByBirthDate() throws Exception {
         final GregorianCalendar cal = new GregorianCalendar(1992, 2, 1);
@@ -79,7 +85,7 @@ public class ReaderDAOImplTest {
 
     }
 
-
+    @Ignore
     @Test
     public void testFindByBook() throws Exception {
         final String name = "Sql vs Java";
