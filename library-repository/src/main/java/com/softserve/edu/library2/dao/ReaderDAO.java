@@ -94,4 +94,5 @@ public interface ReaderDAO extends GenericDAO<Reader, Integer> {
      */
     public List<Reader> findByAddress (String city, String region, String street, int buildingNumber, int apartmentNumber);
 
+    public void deleteById(Integer id);
 }

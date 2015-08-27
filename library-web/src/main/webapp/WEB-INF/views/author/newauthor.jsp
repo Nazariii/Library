@@ -56,7 +56,7 @@
 	<div class="container">
 		<div class="generic-container">
 			<div class="well lead">Add Author Form</div>
-			<form:form method="POST" modelAttribute="author"
+			<form:form method"POST" modelAttribute="author"
 				class="form-horizontal">
 				<form:input type="hidden" path="authorId" id="authorId" />
 

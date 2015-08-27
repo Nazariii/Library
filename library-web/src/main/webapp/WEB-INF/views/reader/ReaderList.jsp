@@ -85,12 +85,12 @@
 								<td>${reader.telephone}</td>
 								<td>${reader.birthDate}</td>
 								<td><a
-									href="<c:url value='/edit-user-${reader.readerId}' />"
+									href="/readers/edit-reader-${reader.readerId}"
 									class="btn btn-success
 
 custom-width">edit</a></td>
 								<td><a
-									href="<c:url value='/delete-user-${reader.readerId}' />"
+									href="/readers/delete-reader-${reader.readerId}"
 									class="btn btn-danger
 
 custom-width">delete</a></td>
@@ -100,7 +100,8 @@ custom-width">delete</a></td>
 				</table>
 			</div>
 			<div class="well">
-				<%--<a href="<c:url value='/reader/new_reader' />">Add New AQuthor</a>--%>
+				<a href="<c:url value='/readers/new_reader'/>" class="btn btn-info ">Add
+					New Author</a>
 			</div>
 		</div>
 	</div>

@@ -108,6 +108,8 @@ custom-width">delete</a></td>
                   <td>${entryValue.publication}</td>
                   <td>${entryValue.year}</td>
                   <td>${entryValue.pageCount}</td>
+                      <td></td>
+                      <td></td>
                       </tr>
               </c:forEach>
 
