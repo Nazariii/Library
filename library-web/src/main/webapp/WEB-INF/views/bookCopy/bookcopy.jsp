@@ -32,6 +32,7 @@
                 <tr>
                     <td>${bookcopy.isPresent}</td>
                     <td>${bookcopy.borrowingDate}</td>
+                    <td>${bookcopy.book.name}</td>
                 </tr>
             </c:forEach>
             <c:forEach items="${books}" var="book">

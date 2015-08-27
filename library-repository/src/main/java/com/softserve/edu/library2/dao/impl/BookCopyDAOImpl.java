@@ -125,30 +125,9 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 		} catch (Exception e) {
 			logger.error("Error", e);
 		}
-	/*	for (BookCopy bookCopy : books) {
+		for (BookCopy bookCopy : books) {
 			Hibernate.initialize(bookCopy.getBook());
-			                 <!--   <td>${bookcopy.book.name}</td> -->
-			                             <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th width="100"></th>
-                <th width="100"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${bookcopies}" var="bookcopy">
-                <tr>
-                    <td>${bookcopy.isPresent}</td>
-                    <td>${bookcopy.borrowingDate}</td>
-                </tr>
-            </c:forEach>
-                        <c:forEach items="${bookcopies}" var="bookcopy">
-                <tr>
-                    <td>${bookcopy.isPresent}</td>
-                    <td>${bookcopy.borrowingDate}</td>
-                </tr>
-            </c:forEach>
-		}*/
+		}
 		return (List<BookCopy>) books;
 	}
 }
