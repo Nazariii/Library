@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,10 +42,36 @@ public class BookCopyController {
     }
 
 
-    @RequestMapping(value = {"/isbn"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/currentbookcopy-{isbn}"}, method = RequestMethod.GET)
     public String listBookCopiesById(ModelMap model, @PathVariable(value = "isbn") Long isbn) {
+
+        if (bookService.getBookByISBN(isbn) == null){
+            return "404";
+        }
+
+        Character yes = 'Y';
         List<BookCopy> bookCopyList = bookCopyService.findByISBN(isbn);
+        List<BookCopy> availableBookCopyList = new ArrayList<BookCopy>();
+        List<BookCopy> notAvailableBookCopyList = new ArrayList<BookCopy>();
+        for (BookCopy bookCopy : bookCopyList){
+            if (bookCopy.getIsPresent().equals(yes)){
+                 availableBookCopyList.add(bookCopy);
+            }else {
+                notAvailableBookCopyList.add(bookCopy);
+            }
+        }
+        Book header =  bookCopyList.get(0).getBook();
+        System.out.println(header);
+
+        Boolean avaivableListEmpty = availableBookCopyList.equals(Collections.emptyList());
+        Boolean notAvaivableListEmpty = notAvailableBookCopyList.equals(Collections.emptyList());
+
+        model.addAttribute("avaivableListEmpty", avaivableListEmpty);
+        model.addAttribute("notAvaivableListEmpty", notAvaivableListEmpty);
+        model.addAttribute("availableBookCopyList", availableBookCopyList);
+        model.addAttribute("notAvailableBookCopyList", notAvailableBookCopyList);
         model.addAttribute("bookcopies", bookCopyList);
-        return "bookcopy";
+        model.addAttribute("header", header);
+        return "bookCopy/currentbookcopy";
     }
 }

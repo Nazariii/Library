@@ -100,11 +100,14 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
 		String sql;
 		sql = "FROM  BookCopy WHERE book.isbn=:isbn";
 		Query query = super.getSession().createQuery(sql).setParameter("isbn", isbn);
-		List<BookCopy> bookCopyList = new ArrayList<BookCopy>();
+		List<BookCopy> bookCopyList = Collections.emptyList();
 		try {
 			bookCopyList = findMany(query);
 		} catch (Exception e) {
 			logger.error("Error", e);
+		}
+		for (BookCopy bookCopy : bookCopyList) {
+			Hibernate.initialize(bookCopy.getBook());
 		}
 		return bookCopyList;
 	}
