@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="utf-8"%>
+         pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Book List</title>
-<link href="<c:url value='/static/css/bootstrap.css' />"
-	rel="stylesheet"></link>
-<link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Bookcopies List</title>
+    <link href="<c:url value='/static/css/bootstrap.css' />"
+          rel="stylesheet"></link>
+    <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 
 <body>
@@ -51,50 +51,37 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	<div class="container">
-		<div class="generic-container">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">
-					<span class="lead">List of Books </span>
-				</div>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Author</th>
-							<th>Year</th>
-							<th width="100"></th>
-							<th width="100"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${books}" var="book">
-							<tr>
-								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
-								<td>${book.author.firstName} ${book.author.lastName}</td>
-								<td>${book.year}</td>
-								<td><a href="<c:url value='/edit-book-${book.isbn}' />"
-									class="btn btn-success 
- 
-custom-width">edit</a></td>
-								<td><a href="<c:url value='/delete-book-${book.isbn}' />"
-									class="btn btn-danger 
- 
-custom-width">delete</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="well">
-			<a href="<c:url value='/books/add'/>" class="btn btn-info ">Add
-				new book</a>
-		</div>
-	</div>
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script type='text/javascript' src="<c:url value='/static/js/jquery.min.js'/>"></script>
-	<script type='text/javascript' src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
+<div class="generic-container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <span class="lead">List of BookCopies </span>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${bookcopies}" var="bookcopy">
+                <tr>
+                    <td>${bookcopy.isPresent}</td>
+                    <td>${bookcopy.borrowingDate}</td>
+                    <td>${bookcopy.book.name}</td>
+                </tr>
+            </c:forEach>
+            <c:forEach items="${books}" var="book">
+            <tr>
+                <td>${book.year}</td>
+            </tr>
+            </c:forEach>
+            <tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
