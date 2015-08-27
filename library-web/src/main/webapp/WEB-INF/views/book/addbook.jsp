@@ -83,7 +83,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="form-group col-md-12">
 						<label class="col-md-3 control-label" for="year">Year</label>
@@ -123,6 +123,25 @@
 						</div>
 					</div>
 				</div>
+				
+				<!--<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-3 control-label" for="author">Author</label>
+						<div class="col-md-7">
+							<form:select path="author" name="author" id="author">
+								<form:option value="">--Select one--</form:option>
+								<c:forEach items="${authorList}" var="authorT">
+									<form:option value="${authorT}">${authorT.firstName}
+							${authorT.lastName}</form:option>
+								</c:forEach>
+							</form:select>
+							<div class="has-error">
+								<form:errors path="author" class="help-inline" />
+							</div>
+						</div>
+					</div>
+				</div> -->
+
 				<div class="row">
 					<div class="form-actions floatRight">
 						<input type="submit" value="add" class="btn btn-primary btn-sm" />
@@ -130,7 +149,6 @@
 					</div>
 				</div>
 			</form:form>
-
 
 		</div>
 	</div>
