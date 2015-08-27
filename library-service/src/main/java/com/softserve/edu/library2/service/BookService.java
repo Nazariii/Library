@@ -7,6 +7,10 @@ import com.softserve.edu.library2.dao.entities.Book;
 public interface BookService {
 	void save(Book book);
 	
+	void deleteByIsbn(long isbn);
+	
+	void update(Book book);
+	
 	Book getBookByName(String name);
 	
 	Book getBookByISBN(long isbn);

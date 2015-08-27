@@ -32,6 +32,20 @@ public class BookServiceImpl implements BookService {
 	
 	@Override
 	@Transactional
+	public void update(Book book) {
+		Book oldBook = getBookByISBN(book.getIsbn());
+		if (oldBook != null) {
+			oldBook.setName(book.getName());
+			oldBook.setPublication(book.getPublication());
+			oldBook.setYear(book.getYear());
+			oldBook.setPageCount(book.getPageCount());
+		} else {
+			save(book);
+		}
+	}
+	
+	@Override
+	@Transactional
 	public Book getBookByName(String name) {
 		return bookDAO.getBookByName(name);
 	}
@@ -78,6 +92,15 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	public List<Book> getBooksByReader(String firstName, String lastName) {
 		return bookDAO.getBooksByReader(firstName, lastName);
+	}
+
+	@Override
+	@Transactional
+	public void deleteByIsbn(long isbn) {
+		for (int i = 0; i < 10; ++i) {
+			System.out.println(isbn);
+		}
+		bookDAO.deleteByIsbn(isbn);
 	}
 
 }
