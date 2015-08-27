@@ -142,6 +142,12 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer> implements B
                     <td>${bookcopy.borrowingDate}</td>
                 </tr>
             </c:forEach>
+                        <c:forEach items="${bookcopies}" var="bookcopy">
+                <tr>
+                    <td>${bookcopy.isPresent}</td>
+                    <td>${bookcopy.borrowingDate}</td>
+                </tr>
+            </c:forEach>
 		}*/
 		return (List<BookCopy>) books;
 	}

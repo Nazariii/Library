@@ -33,9 +33,10 @@ public class BookCopyController {
     public String listBookCopies(ModelMap model) {
         List<BookCopy> bookCopyList =(List<BookCopy>)  bookCopyService.findAll();
         model.addAttribute("bookcopies", bookCopyList);
-        List<Book> books =(List<Book>)  bookService.getAllBooks();
+        List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
-        return "bookcopy";
+        System.out.println(books);
+        return "bookCopy/bookcopy";
     }
 
 

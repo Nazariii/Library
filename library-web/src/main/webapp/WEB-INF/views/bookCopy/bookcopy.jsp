@@ -36,7 +36,7 @@
             </c:forEach>
             <c:forEach items="${books}" var="book">
             <tr>
-                <td>??? == ${book.year} ===</td>
+                <td>${book.year}</td>
             </tr>
             </c:forEach>
             <tbody>
