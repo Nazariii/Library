@@ -35,7 +35,7 @@ public class Book implements java.io.Serializable {
 	private Author author;
 	private String name;
 	private String publication;
-	private int year;
+	private Integer year;
 	private Integer pageCount;
 	private int bookCopyCount;
 	private Set<Author> authors = new HashSet<Author>(0);
@@ -51,7 +51,7 @@ public class Book implements java.io.Serializable {
 		this.bookCopyCount = bookCopyCount;
 	}
 
-	public Book(long isbn, Author author, String name, String publication, int year, Integer pageCount,
+	public Book(long isbn, Author author, String name, String publication, Integer year, Integer pageCount,
 			int bookCopyCount, Set<Author> authors, Set<BookCopyReader> bookCopyReaders, Set<BookCopy> bookCopies) {
 		if (year < 1700 || year > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year must be in range [1700 - current year].");
@@ -108,11 +108,11 @@ public class Book implements java.io.Serializable {
 	}
 
 	@Column(name = "year")
-	public int getYear() {
+	public Integer getYear() {
 		return this.year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		if (year < 1700 || year > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year must be in range [1700 - current year].");
 		}

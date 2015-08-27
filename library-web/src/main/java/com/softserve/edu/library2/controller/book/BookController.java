@@ -31,7 +31,7 @@ public class BookController {
 	@Autowired
 	AuthorService authorService;
 	
-	@RequestMapping(value= {"/"}, method = RequestMethod.GET)
+	@RequestMapping(value= {"/booklist"}, method = RequestMethod.GET)
 	public String getBookList(ModelMap model) {
 		List<Book> books = bookService.getAllBooks();
 		model.addAttribute("books", books);
@@ -42,22 +42,29 @@ public class BookController {
 	public String addBook(ModelMap model) {
 		Book book = new Book();
 		List<Author> authorList = authorService.findAll();
-		
+		int authorId = 0;
 		model.addAttribute("book", book);
 		model.addAttribute("authorList", authorList);
+		model.addAttribute("authorId", authorId);
 		return "book/addbook";
 	}
 	
+	@RequestMapping(value = {"/books-author-{id}"}, method = RequestMethod.GET)
+	public String getBooksByAuthor(@Valid int id, ModelMap model) {
+		List<Book> books = bookService.getBooksByAuthorId(id);
+		model.addAttribute("books", books);
+		return "book/author_books";
+	}
+	
 	@RequestMapping(value = { "/add" }, method = RequestMethod.POST)
-	public String saveUser(@Valid Book book, BindingResult result, ModelMap model) {
+	public String saveBook(@Valid Book book, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
-			return "newauthor";
+			return "book/booklist";
 		}
-		//TODO create method save in BookService
-		//bookService.save(book);
+		
+		bookService.save(book);
 
-		model.addAttribute("success", "Book " + book.getName() + " was registered successfully");
-		return "redirect:/books/";
+		return "redirect:booklist";
 	}
 }

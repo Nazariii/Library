@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.softserve.edu.library2.dao.BookDAO;
+import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.service.BookService;
 
@@ -23,6 +24,12 @@ public class BookServiceImpl implements BookService {
 	@Autowired
 	BookDAO bookDAO;
 
+	@Override
+	@Transactional
+	public void save(Book book) {
+		bookDAO.save(book);
+	}
+	
 	@Override
 	@Transactional
 	public Book getBookByName(String name) {
@@ -53,6 +60,13 @@ public class BookServiceImpl implements BookService {
 	public List<Book> getBooksByAuthor(String firstName, String lastName) {
 		return bookDAO.getBooksByAuthor(firstName, lastName);
 	}
+	
+	@Override
+	@Transactional
+	public List<Book> getBooksByAuthorId(Integer id) {
+		return bookDAO.getBooksByAuthorId(id);
+	}
+
 
 	@Override
 	@Transactional
