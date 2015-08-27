@@ -5,7 +5,7 @@ package com.softserve.edu.library2.dao.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+import javax.persistence.EntityNotFoundException;
 
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Query;
@@ -78,4 +78,24 @@ public class AuthorDAOImpl extends AbstractDAO<Author, Integer> implements Autho
 		}
 		return author;
 	}
+
+	@Override
+	public void deleteById(Integer id) {
+		if (id == null) {
+			throw logger.throwing(new NullPointerException("Author id to delete is null"));
+		}
+
+		/*
+		 * Criteria crit = createEntityCriteria();
+		 * crit.add(Restrictions.eq("authorId", id)); Author author = (Author)
+		 * crit.uniqueResult(); delete(author);
+		 */
+		Author author = findByID(Author.class, id);
+		if (author == null) {
+			throw new EntityNotFoundException("Author not found for deleting");
+		}
+		delete(author);
+
+	}
+
 }

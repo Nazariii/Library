@@ -72,10 +72,10 @@
 								<td>${author.firstName}</td>
 								<td>${author.lastName}</td>
 								<td><a
-									href="<c:url value='/edit-user-${author.authorId}' />"
+									href="<c:url value='/authors/edit-author-${author.authorId}' />"
 									class="btn btn-success custom-width">edit</a></td>
 								<td><a
-									href="<c:url value='/delete-user-${author.authorId}' />"
+									href="<c:url value='/authors/delete-author-${author.authorId}' />"
 									class="btn btn-danger custom-width">delete</a></td>
 							</tr>
 						</c:forEach>
