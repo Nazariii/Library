@@ -41,8 +41,6 @@
 							<li><a href="#">List Readers and Books</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Add new Reader</a></li>
-							<li><a href="#">Edit Reader</a></li>
-							<li><a href="#">Delete Reader</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -52,8 +50,6 @@
 							<li><a href="#">List Readers and Addresses</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#">Add new Address</a></li>
-							<li><a href="#">Edit Address</a></li>
-							<li><a href="#">Delete Address</a></li>
 						</ul>
 					</li>
 				</ul>
