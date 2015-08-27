@@ -6,6 +6,7 @@ import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -100,6 +101,9 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 			books = findAll(Book.class);
 		} catch (Exception e) {
 			logger.error("Error", e);
+		}
+		for (Book book : books) {
+			Hibernate.initialize(book.getAuthor());
 		}
 		return books;
 	}
