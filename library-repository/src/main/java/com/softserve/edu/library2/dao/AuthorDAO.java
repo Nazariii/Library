@@ -18,4 +18,7 @@ public interface AuthorDAO extends GenericDAO<Author, Integer> {
 	public Author findByBook(String name);
 
 	public List<Author> findSubauthorByBook(String name);
+	
+	public void deleteById(Integer id);
+
 }

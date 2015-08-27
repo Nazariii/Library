@@ -3,20 +3,19 @@
  */
 package com.softserve.edu.library2.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import com.softserve.edu.library2.config.AppConfig;
 import com.softserve.edu.library2.dao.entities.Author;
-import com.softserve.edu.library2.dao.impl.AuthorDAOImpl;
-import com.softserve.edu.library2.dao.util.HibernateUtil;
 import com.softserve.edu.library2.service.AuthorService;
 
 /**
@@ -27,11 +26,11 @@ public class AuthorServiceImplTest {
 
 	AbstractApplicationContext context;
 	AuthorService authorService;
-	
+
 	@Before
 	public void init() {
 		context = new AnnotationConfigApplicationContext(AppConfig.class);
-		authorService = (AuthorService) context.getBean("authorServiceImpl");
+		authorService = (AuthorService) context.getBean("authorService");
 	}
 
 	/**
@@ -45,4 +44,37 @@ public class AuthorServiceImplTest {
 		assertEquals("Ivan", author.getFirstName());
 	}
 
+	@Test
+	public void testFindByBook() {
+		Author author = authorService.findByBook("Kobzar");
+		assertEquals("Taras", author.getFirstName());
+	}
+
+	@Test
+	public void testFindSubauthorByBook() {
+		List<Author> author = authorService.findSubauthorByBook("Sql vs Java");
+		assertEquals("Dmytro", author.get(0).getFirstName());
+
+	}
+
+	@Test
+	public void testFindById() {
+		Author author = authorService.findById(2);
+		assertEquals("Dmytro", author.getFirstName());
+	}
+
+	@Test
+	public void testUpdate() {
+		Author author = authorService.findById(8);
+		author.setFirstName("Dmytro111");
+		authorService.update(author);
+		assertEquals("Dmytro111", author.getFirstName());
+	}
+
+	@Ignore
+	@Test
+	public void testDeleteById() {
+		authorService.deleteById(16);
+		assertTrue(true);
+	}
 }
