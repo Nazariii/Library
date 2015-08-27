@@ -32,14 +32,14 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
-					<li><a href="<c:url value='author/authorlist'/>">Authors</a></li>
+					<li><a href="<c:url value='/authors'/>">Authors</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
-							<li><a href="#">List Readers and Books</a></li>
+							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Add new Reader</a></li>
+							<li><a href="/readers/edit_reader">Add new Reader</a></li>
 
 						</ul>
 					</li>

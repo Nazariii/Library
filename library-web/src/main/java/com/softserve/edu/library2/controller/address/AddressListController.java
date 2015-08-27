@@ -15,7 +15,7 @@ import java.util.List;
  * @author Dmytro Brylyuk
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/addresses")
 public class AddressListController {
 
     @Autowired

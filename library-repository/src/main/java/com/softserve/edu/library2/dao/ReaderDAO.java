@@ -48,6 +48,7 @@ public interface ReaderDAO extends GenericDAO<Reader, Integer> {
      */
     public List<Reader> findByBook(String name);
 
+
     /**
      * Method to find readers by city
      * @param city String
