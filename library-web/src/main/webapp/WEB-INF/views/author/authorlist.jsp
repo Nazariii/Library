@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
@@ -26,7 +26,7 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="<c:url value='/'/>">Books</a></li>
-					<li><a href="<c:url value='author/authorlist'/>">Authors</a></li>
+					<li><a href="/authors/list">Authors</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -72,10 +72,10 @@
 								<td>${author.firstName}</td>
 								<td>${author.lastName}</td>
 								<td><a
-									href="<c:url value='/edit-user-${author.authorId}' />"
+									href="<c:url value='/authors/edit-author-${author.authorId}' />"
 									class="btn btn-success custom-width">edit</a></td>
 								<td><a
-									href="<c:url value='/delete-user-${author.authorId}' />"
+									href="<c:url value='/authors/delete-author-${author.authorId}' />"
 									class="btn btn-danger custom-width">delete</a></td>
 							</tr>
 						</c:forEach>
