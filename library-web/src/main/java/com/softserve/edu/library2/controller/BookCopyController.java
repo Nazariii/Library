@@ -61,8 +61,11 @@ public class BookCopyController {
                 notAvailableBookCopyList.add(bookCopy);
             }
         }
+        if(bookCopyList.size() !=0){
         Book header =  bookCopyList.get(0).getBook();
-        System.out.println(header.getName());
+            System.out.println(header.getName());
+        }
+
 
         Boolean avaivableListEmpty = availableBookCopyList.equals(Collections.emptyList());
         Boolean notAvaivableListEmpty = notAvailableBookCopyList.equals(Collections.emptyList());
