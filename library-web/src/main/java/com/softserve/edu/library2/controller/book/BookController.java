@@ -99,6 +99,7 @@ public class BookController {
 		}
 		Author author = authorService.findById(authorId);
 		book.setAuthor(author);
+		book.setIsbn(bookIsbn);
 		bookService.update(book);
 
 		return "redirect:booklist";
