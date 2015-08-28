@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-         <a class="navbar-brand active" href="<c:url value='/'/>">Library</a>
+         <a class="navbar-brand active" href="<c:url value='/'/>"><span class="glyphicon glyphicon-education icon"></span><div class="div-space-3"></div>Library</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">

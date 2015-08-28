@@ -32,3 +32,9 @@ body, .form-control {
 .glyphicon.glyphicon-education {
 	font-size: 75px;
 }
+.glyphicon.glyphicon-education.icon {
+	font-size: 18px;
+}
+.div-space-3 {
+	height: 1px;
+}
