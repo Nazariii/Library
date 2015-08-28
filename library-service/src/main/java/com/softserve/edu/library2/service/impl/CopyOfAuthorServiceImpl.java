@@ -18,8 +18,8 @@ import com.softserve.edu.library2.service.AuthorService;
  * @author Назік
  *
  */
-@Service("authorService")
-public class AuthorServiceImpl implements AuthorService {
+@Service("authorJPAService")
+public class CopyOfAuthorServiceImpl implements AuthorService {
 
 	@Autowired
 	AuthorRepository repository;
@@ -52,7 +52,7 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	@Transactional("hibernateTX")
+	@Transactional("JPAtx")
 	public void save(Author author) {
 		repository.save(author);
 	}
