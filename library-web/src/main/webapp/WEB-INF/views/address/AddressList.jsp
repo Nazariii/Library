@@ -102,7 +102,7 @@ custom-width">delete</a></td>
 			</div>
 			<div class="well">
 				<a href="<c:url value='/addresses/new_address'/>" class="btn btn-info ">Add
-					New Reader</a>
+					New Address</a>
 			</div>
 		</div>
 	</div>

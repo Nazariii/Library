@@ -140,11 +140,11 @@ public class AddressDAOImpl extends AbstractDAO<Address, Integer> implements Add
     @Override
     public void deleteById(Integer id) {
         if (id == null) {
-            throw logger.throwing(new NullPointerException("Reader id to delete is null"));
+            throw logger.throwing(new NullPointerException("Address id to delete is null"));
         }
         Address address = findByID(Address.class, id);
         if (address == null) {
-            throw new EntityNotFoundException("Reader not found for deleting");
+            throw new EntityNotFoundException("Address not found for deleting");
         }
         delete(address);
 

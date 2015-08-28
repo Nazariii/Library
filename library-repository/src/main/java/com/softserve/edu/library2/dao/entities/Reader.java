@@ -124,15 +124,6 @@ public class Reader implements java.io.Serializable {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-	public void setBirthDate(String birthDate) {
-		String[] convertDate = birthDate.split("-");
-		GregorianCalendar calendar = new GregorianCalendar(
-				Integer.parseInt(convertDate[0]),
-				Integer.parseInt(convertDate[1]),
-				Integer.parseInt(convertDate[2]));
-		this.birthDate = calendar.getTime();
-	}
-
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "reader")
 	public Set<BookCopyReader> getBookCopyReaders() {
