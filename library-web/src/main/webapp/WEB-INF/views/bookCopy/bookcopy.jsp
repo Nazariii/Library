@@ -7,13 +7,13 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>< Add Author Form</title>
+    <title>Book copies</title>
     <link href="<c:url value='/static/css/bootstrap.css'/>" rel="stylesheet"></link>
     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 
 
-<>
+<body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,17 +28,26 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="<c:url value='/books/booklist'/>">Books</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown" role="button" aria-haspopup="true"
+                                        aria-expanded="false">Books<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/bookcopies/list">List book copies</a></li>
+                        <li><a href="<c:url value='/books/booklist'/>">List of Books</a></li>
+                    </ul>
+                </li>
                 <li><a href="/authors/list">Authors</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown" role="button" aria-haspopup="true"
+                                        aria-expanded="false">Readers<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/readers/list_readers">List of Readers</a></li>
                         <li><a href="#">List Readers and Books</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Add new Reader</a></li>
-                    </ul>
-                </li>
+                    </ul></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -71,7 +80,7 @@
             <c:forEach items="${bookcopies}" var="bookcopy">
             <c:if test="${bookcopy.isPresent eq 'Y'.charAt(0)}">
             <tr>
-                <td>${bookcopy.book.name}</td>
+                <td><a href="<c:url value='/bookcopies/currentbookcopy-${bookcopy.book.isbn}'/>">${bookcopy.book.name}</a></td>
             </tr>
             </c:if>
             </c:forEach>
@@ -98,7 +107,7 @@
         <c:forEach items="${bookcopies}" var="bookcopy">
         <c:if test="${bookcopy.isPresent eq 'N'.charAt(0)}">
         <tr>
-            <td>${bookcopy.book.name}</td>
+            <td><a href="<c:url value='/bookcopies/currentbookcopy-${bookcopy.book.isbn}'/>">${bookcopy.book.name}</a></td>
         </tr>
         </c:if>
         </c:forEach>
