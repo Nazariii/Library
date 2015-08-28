@@ -1,11 +1,10 @@
 package com.softserve.edu.library2.dao.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import com.softserve.edu.library2.dao.BookCopyReaderDAO;
 import com.softserve.edu.library2.dao.entities.Author;
+import com.softserve.edu.library2.dao.entities.BookCopyReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
@@ -16,7 +15,10 @@ import com.softserve.edu.library2.dao.BookCopyDAO;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityNotFoundException;
 
 /**
  * Created by Dmytro on 8/20/2015.
@@ -26,6 +28,8 @@ import org.springframework.stereotype.Repository;
 public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements BookCopyDAO {
 
 	private static Logger logger = LogManager.getLogger();
+
+	BookCopyReaderDAO bookCopyReaderDAO;
 
 	@Override
 	public List<BookCopy> findByName(String name) {
@@ -100,11 +104,14 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements Bo
 		String sql;
 		sql = "FROM  BookCopy WHERE book.isbn=:isbn";
 		Query query = super.getSession().createQuery(sql).setParameter("isbn", isbn);
-		List<BookCopy> bookCopyList = new ArrayList<BookCopy>();
+		List<BookCopy> bookCopyList = Collections.emptyList();
 		try {
 			bookCopyList = findMany(query);
 		} catch (Exception e) {
 			logger.error("Error", e);
+		}
+		for (BookCopy bookCopy : bookCopyList) {
+			Hibernate.initialize(bookCopy.getBook());
 		}
 		return bookCopyList;
 	}
@@ -131,4 +138,36 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements Bo
 		}
 		return (List<BookCopy>) books;
 	}
+	@Override
+	public void deleteById(Integer id) {
+		if (id == null) {
+			throw logger.throwing(new NullPointerException("Book copy id to delete is null"));
+		}
+		BookCopy bookCopy = findByID(BookCopy.class, id);
+	//	Hibernate.initialize(bookCopy.getBookCopyReaders());
+		if (bookCopy == null) {
+			throw new EntityNotFoundException("Book copy not found for deleting");
+		}
+		//delete(bookCopy.getBookCopyReaders());
+
+		delete(bookCopy);
+
+	}
+
+	@Override
+	public void delete(Set<BookCopyReader> bookCopyReaders) {
+		delete(bookCopyReaders);
+	}
+	/*        if (id == null) {
+            throw logger.throwing(new NullPointerException("Reader id to delete is null"));
+        }
+        Reader reader = findByID(Reader.class, id);
+        List<Reader> listReaders= findByAddress(reader.getAddress());
+        if (listReaders.size() == 1) {
+            delete(findByID(Address.class, reader.getAddress().getAddressId()));
+        }
+        if (reader == null) {
+            throw new EntityNotFoundException("Reader not found for deleting");
+        }
+        delete(reader);*/
 }

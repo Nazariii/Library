@@ -72,11 +72,11 @@
 							<tr>
 								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
 								<td>${book.year}</td>
-								<td><a href="<c:url value='/edit-book-${book.isbn}' />"
+								<td><a href="<c:url value='/books/edit-book-${author.authorId} ${book.isbn}' />"
 									class="btn btn-success 
  
 custom-width">edit</a></td>
-								<td><a href="<c:url value='/delete-book-${book.isbn}' />"
+								<td><a href="<c:url value='/books/delete-book-${book.isbn}' />"
 									class="btn btn-danger 
  
 custom-width">delete</a></td>

@@ -27,8 +27,9 @@
 				<ul class="nav navbar-nav">
 					<li><a href="<c:url value='/books/booklist'/>">Books</a></li>
 					<li class="active"><a href="/authors/list">Authors</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
 							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
@@ -95,7 +96,9 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type='text/javascript' src="<c:url value='/static/js/jquery.min.js'/>"></script>
-	<script type='text/javascript' src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/jquery.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
 </body>
 </html>

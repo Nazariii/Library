@@ -68,5 +68,16 @@ public class BookCopyServiceImpl implements BookCopyService{
         return (List<BookCopy>) bookCopyDAO.findAll();
     }
 
+    @Override
+    @Transactional
+    public void deleteById(Integer id){
+        bookCopyDAO.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void save(BookCopy bookCopy) {
+        bookCopyDAO.save(bookCopy);
+    }
 
 }

@@ -2,6 +2,7 @@ package com.softserve.edu.library2.dao.impl;
 
 import com.softserve.edu.library2.dao.AbstractDAO;
 import com.softserve.edu.library2.dao.BookDAO;
+import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.util.HibernateUtil;
 
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
 
 /**
  * @author Taras
@@ -198,5 +201,12 @@ public class BookDAOImpl extends AbstractDAO<Book, Integer> implements BookDAO {
 		return books;
 	}
 
-
+	@Override
+	public void deleteByIsbn(long isbn) {
+		Book book = getBookByISBN(isbn);
+		if (book == null) {
+			throw new EntityNotFoundException("Unable to delete book: book not found.");
+		}
+		delete(book);
+	}
 }

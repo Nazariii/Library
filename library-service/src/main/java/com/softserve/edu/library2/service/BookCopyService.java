@@ -27,4 +27,8 @@ public interface BookCopyService {
     public Author findAuthorOfBookCopy (BookCopy bookCopy);
 
     public List<BookCopy> findAll();
+
+    public void deleteById(Integer id);
+
+    public void save(BookCopy bookCopy);
 }

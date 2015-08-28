@@ -7,7 +7,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Add new book</title>
+<title>Edit book</title>
 <link href="<c:url value='/static/css/bootstrap.css'/>" rel="stylesheet"></link>
 <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
@@ -34,18 +34,18 @@
 						aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
-							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
+							<li><a href="#">List Readers and Books</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/readers/new_reader">Add new Reader</a></li>
-						</ul>
-					</li>
-					<li class="dropdown active">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
+							<li><a href="#">Add new Reader</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Addresses<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/addresses/list_addresses">List of Addresses</a></li>
-							<li><a href="/addresses/list_readers_addresses">List Readers and Addresses</a></li>
+							<li><a href="#">List of Addresses</a></li>
+							<li><a href="#">List Readers and Addresses</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/addresses/new_address">Add new Address</a></li>
+							<li><a href="#">Add new Address</a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -54,30 +54,17 @@
 	</nav>
 	<div class="container">
 		<div class="generic-container">
-			<div class="well lead" align="center">Add book by
-				${book.author.firstName} ${book.author.lastName}</div>
+			<div class="well lead" align="center">Edit book ISBN 
+				${book.isbn}</div>
 			<form:form method="POST" modelAttribute="book"
 				class="form-horizontal">
-				
-				<div class="row">
-					<div class="form-group col-md-12">
-						<label class="col-md-3 control-label" for="isbn">ISBN</label>
-						<div class="col-md-7">
-							<form:input type="number" path="isbn" id="isbn"
-								class="form-control input-sm" />
-							<div class="has-error">
-								<form:errors path="isbn" class="help-inline" />
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<div class="row">
 					<div class="form-group col-md-12">
 						<label class="col-md-3 control-label" for="name">Title</label>
 						<div class="col-md-7">
 							<form:input type="text" path="name" id="name"
-								class="form-control input-sm" />
+								value="${book.name}" class="form-control input-sm" />
 							<div class="has-error">
 								<form:errors path="name" class="help-inline" />
 							</div>
@@ -90,7 +77,7 @@
 						<label class="col-md-3 control-label" for="year">Year</label>
 						<div class="col-md-7">
 							<form:input type="number" path="year" id="year"
-								class="form-control input-sm" />
+								value="${book.year}" class="form-control input-sm" />
 							<div class="has-error">
 								<form:errors path="year" class="help-inline" />
 							</div>
@@ -104,7 +91,7 @@
 							Publisher</label>
 						<div class="col-md-7">
 							<form:input type="text" path="publication" id="publication"
-								class="form-control input-sm" />
+								value="${book.publication}" class="form-control input-sm" />
 							<div class="has-error">
 								<form:errors path="publication" class="help-inline" />
 							</div>
@@ -117,7 +104,7 @@
 						<label class="col-md-3 control-label" for="pageCount">Pages</label>
 						<div class="col-md-7">
 							<form:input type="number" path="pageCount" id="pageCount"
-								class="form-control input-sm" />
+								value="${book.pageCount}" class="form-control input-sm" />
 							<div class="has-error">
 								<form:errors path="pageCount" class="help-inline" />
 							</div>
@@ -125,27 +112,9 @@
 					</div>
 				</div>
 
-				<!--<div class="row">
-					<div class="form-group col-md-12">
-						<label class="col-md-3 control-label" for="author">Author</label>
-						<div class="col-md-7">
-							<form:select path="author" name="author" id="author">
-								<form:option value="">--Select one--</form:option>
-								<c:forEach items="${authorList}" var="authorT">
-									<form:option value="${authorT}">${authorT.firstName}
-							${authorT.lastName}</form:option>
-								</c:forEach>
-							</form:select>
-							<div class="has-error">
-								<form:errors path="author" class="help-inline" />
-							</div>
-						</div>
-					</div>
-				</div> -->
-
 				<div class="row">
 					<div class="form-actions floatRight">
-						<input type="submit" value="add" class="btn btn-primary btn-sm" />
+						<input type="submit" value="save" class="btn btn-primary btn-sm" />
 						or <a href="<c:url value='/books/' />">Cancel</a>
 					</div>
 				</div>

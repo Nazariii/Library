@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Book List</title>
-<link href="<c:url value='/static/css/bootstrap.css' />"
-	rel="stylesheet"></link>
+<link href="<c:url value='/static/css/bootstrap.css'/>" rel="stylesheet"></link>
 <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 </head>
 
@@ -28,8 +27,9 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="<c:url value='/books/booklist'/>">Books</a></li>
 					<li><a href="/authors/list">Authors</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Readers<span class="caret"></span></a>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
 							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
@@ -46,7 +46,6 @@
 							<li><a href="/addresses/new_address">Add new Address</a></li>
 						</ul>
 					</li>
-				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
@@ -55,7 +54,7 @@
 		<div class="generic-container">
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
-				<div class="panel-heading">
+				<div class="panel-heading" align="center">
 					<span class="lead">List of Books </span>
 				</div>
 				<table class="table table-hover">
@@ -72,13 +71,17 @@
 						<c:forEach items="${books}" var="book">
 							<tr>
 								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
-								<td>${book.author.firstName} ${book.author.lastName}</td>
+								<td><a
+									href="<c:url value='/books/books-author-${book.author.authorId}' />">
+										${book.author.firstName} ${book.author.lastName}</a></td>
 								<td>${book.year}</td>
-								<td><a href="<c:url value='/edit-book-${book.isbn}' />"
+								<td><a
+									href="<c:url value='/books/edit-book-${book.author.authorId}-${book.isbn}' />"
 									class="btn btn-success 
  
 custom-width">edit</a></td>
-								<td><a href="<c:url value='/delete-book-${book.isbn}' />"
+								<td><a
+									href="<c:url value='/books/delete-book-${book.isbn}' />"
 									class="btn btn-danger 
  
 custom-width">delete</a></td>
@@ -88,13 +91,11 @@ custom-width">delete</a></td>
 				</table>
 			</div>
 		</div>
-		<div class="well">
-			<a href="<c:url value='/books/add'/>" class="btn btn-info ">Add
-				new book</a>
-		</div>
 	</div>
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type='text/javascript' src="<c:url value='/static/js/jquery.min.js'/>"></script>
-	<script type='text/javascript' src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/jquery.min.js'/>"></script>
+	<script type='text/javascript'
+		src="<c:url value='/static/js/bootstrap.min.js'/>"></script>
 </body>
 </html>
