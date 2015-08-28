@@ -80,4 +80,9 @@ public class BookCopyServiceImpl implements BookCopyService{
         bookCopyDAO.save(bookCopy);
     }
 
+    @Override
+    @Transactional
+    public BookCopy findByID(Integer id){
+       return bookCopyDAO.findByID(id);
+    }
 }

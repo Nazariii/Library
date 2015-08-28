@@ -31,4 +31,6 @@ public interface BookCopyService {
     public void deleteById(Integer id);
 
     public void save(BookCopy bookCopy);
+
+    public BookCopy findByID(Integer id);
 }

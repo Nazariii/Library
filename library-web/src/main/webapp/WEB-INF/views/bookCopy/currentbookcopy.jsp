@@ -136,6 +136,9 @@
                 <td><a
                         href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
                         class="btn btn-danger custom-width">delete</a></td>
+                <td><a
+                        href="<c:url value='/bookcopies/set-reader-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
+                        class="btn btn-primary custom-width">Set reader</a></td>
             </tr>
             </c:if>
             </c:forEach>

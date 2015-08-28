@@ -155,19 +155,9 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements Bo
 	}
 
 	@Override
-	public void delete(Set<BookCopyReader> bookCopyReaders) {
-		delete(bookCopyReaders);
+	public BookCopy findByID(Integer id) {
+		return findByID(id);
 	}
-	/*        if (id == null) {
-            throw logger.throwing(new NullPointerException("Reader id to delete is null"));
-        }
-        Reader reader = findByID(Reader.class, id);
-        List<Reader> listReaders= findByAddress(reader.getAddress());
-        if (listReaders.size() == 1) {
-            delete(findByID(Address.class, reader.getAddress().getAddressId()));
-        }
-        if (reader == null) {
-            throw new EntityNotFoundException("Reader not found for deleting");
-        }
-        delete(reader);*/
+
+
 }

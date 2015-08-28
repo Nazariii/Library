@@ -1,8 +1,11 @@
 package com.softserve.edu.library2.controller;
 
+import com.softserve.edu.library2.dao.ReaderDAO;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 import com.softserve.edu.library2.dao.entities.BookCopyReader;
+import com.softserve.edu.library2.dao.entities.Reader;
+import com.softserve.edu.library2.dao.impl.ReaderDAOImpl;
 import com.softserve.edu.library2.service.BookCopyService;
 import com.softserve.edu.library2.service.BookService;
 import com.softserve.edu.library2.service.impl.BookCopyServiceImpl;
@@ -61,10 +64,10 @@ public class BookCopyController {
                 notAvailableBookCopyList.add(bookCopy);
             }
         }
-        if(bookCopyList.size() !=0){
+    /*    if(bookCopyList.size() !=0){
         Book header =  bookCopyList.get(0).getBook();
             System.out.println(header.getName());
-        }
+        }*/
 
 
         Boolean avaivableListEmpty = availableBookCopyList.equals(Collections.emptyList());
@@ -75,7 +78,7 @@ public class BookCopyController {
         model.addAttribute("availableBookCopyList", availableBookCopyList);
         model.addAttribute("notAvailableBookCopyList", notAvailableBookCopyList);
         model.addAttribute("bookcopies", bookCopyList);
-        model.addAttribute("header", header);
+    /*    model.addAttribute("header", header);*/
         model.addAttribute("isbn", isbn);
         return "bookCopy/currentbookcopy";
     }
@@ -83,6 +86,22 @@ public class BookCopyController {
     @RequestMapping(value = { "/delete-bookcopy-{isbn}-{id}" }, method = RequestMethod.GET)
     public String deleteBookCopy(@PathVariable Integer isbn, @PathVariable Integer id) {
         bookCopyService.deleteById(id);
+        return "redirect:/bookcopies/currentbookcopy-"+isbn;
+    }
+
+    @RequestMapping(value = { "/set-reader-{isbn}-{id}" }, method = RequestMethod.POST)
+    public String setReaderBookCopy(@Valid BookCopyReader bookCopyReader, BindingResult result, ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
+        if (result.hasErrors()) {
+            return "/bookcopies/set-reader-"+ isbn +"-" + id;
+        }
+
+        bookCopyService.findByID(id).getBookCopyReaders().add(bookCopyReader);
+
+       // model.addAttribute("success", "User " +bookCopyReader.getFirstName()) + " " + bookCopyReader.getLastName()
+         //       + " registered successfully" );
+
+
+      //  bookCopyService.save(bookCopy);
         return "redirect:/bookcopies/currentbookcopy-"+isbn;
     }
 

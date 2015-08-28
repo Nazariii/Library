@@ -3,6 +3,7 @@ package com.softserve.edu.library2.service;
 import java.util.List;
 
 import com.softserve.edu.library2.dao.entities.Book;
+import com.softserve.edu.library2.dao.entities.BookCopy;
 
 public interface BookService {
 	void save(Book book);
@@ -26,4 +27,5 @@ public interface BookService {
 	List<Book> getBooksByPublisher(String publisher);
 	
 	List<Book> getBooksByReader(String firstName, String lastName);
+
 }
