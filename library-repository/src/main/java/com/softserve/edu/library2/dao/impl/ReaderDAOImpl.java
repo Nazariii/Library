@@ -239,10 +239,14 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
             throw logger.throwing(new NullPointerException("Reader id to delete is null"));
         }
         Reader reader = findByID(Reader.class, id);
-        List<Reader> listReaders= findByAddress(reader.getAddress());
-        if (listReaders.size() == 1) {
-            delete(findByID(Address.class, reader.getAddress().getAddressId()));
-        }
+//        List<Reader> listReaders = null;
+//        if(!(reader.getAddress().equals(null))){
+//            listReaders = findByAddress(reader.getAddress());
+//            if (listReaders.size() == 1) {
+//                delete(findByID(Address.class, reader.getAddress().getAddressId()));
+//            }
+//        }
+
         if (reader == null) {
             throw new EntityNotFoundException("Reader not found for deleting");
         }
