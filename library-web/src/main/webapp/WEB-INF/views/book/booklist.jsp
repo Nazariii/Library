@@ -70,7 +70,7 @@
 					<tbody>
 						<c:forEach items="${books}" var="book">
 							<tr>
-								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
+								<td><a href="<c:url value='/bookcopies/currentbookcopy-${book.isbn}' />">${book.name}</a></td>
 								<td><a
 									href="<c:url value='/books/books-author-${book.author.authorId}' />">
 										${book.author.firstName} ${book.author.lastName}</a></td>
