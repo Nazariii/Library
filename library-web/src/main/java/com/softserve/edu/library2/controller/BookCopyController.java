@@ -26,71 +26,71 @@ import java.util.*;
 @RequestMapping("/bookcopies")
 public class BookCopyController {
 
-    @Autowired
-    BookCopyService bookCopyService;
+	@Autowired
+	BookCopyService bookCopyService;
 
-    @Autowired
-    BookService bookService;
+	@Autowired
+	BookService bookService;
 
-    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-    public String listBookCopies(ModelMap model) {
-        List<BookCopy> bookCopyList =(List<BookCopy>)  bookCopyService.findAll();
-        model.addAttribute("bookcopies", bookCopyList);
-        List<Book> books = bookService.getAllBooks();
-        model.addAttribute("books", books);
-        System.out.println(books);
-        return "bookCopy/bookcopy";
-    }
+	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
+	public String listBookCopies(ModelMap model) {
+		List<BookCopy> bookCopyList = (List<BookCopy>) bookCopyService.findAll();
+		model.addAttribute("bookcopies", bookCopyList);
+		List<Book> books = bookService.getAllBooks();
+		model.addAttribute("books", books);
+		System.out.println(books);
+		return "bookCopy/bookcopy";
+	}
 
+	@RequestMapping(value = { "/currentbookcopy-{isbn}" }, method = RequestMethod.GET)
+	public String listBookCopiesById(ModelMap model, @PathVariable(value = "isbn") Long isbn) {
 
-    @RequestMapping(value = {"/currentbookcopy-{isbn}"}, method = RequestMethod.GET)
-    public String listBookCopiesById(ModelMap model, @PathVariable(value = "isbn") Long isbn) {
+		if (bookService.getBookByISBN(isbn) == null) {
+			return "404";
+		}
 
-        if (bookService.getBookByISBN(isbn) == null){
-            return "404";
-        }
+		Character yes = 'Y';
+		List<BookCopy> bookCopyList = bookCopyService.findByISBN(isbn);
+		List<BookCopy> availableBookCopyList = new ArrayList<BookCopy>();
+		List<BookCopy> notAvailableBookCopyList = new ArrayList<BookCopy>();
+		for (BookCopy bookCopy : bookCopyList) {
+			if (bookCopy.getIsPresent().equals(yes)) {
+				availableBookCopyList.add(bookCopy);
+			} else {
+				notAvailableBookCopyList.add(bookCopy);
+			}
+		}
+		if (bookCopyList.size() > 0) {
+			Book header = bookCopyList.get(0).getBook();
+			model.addAttribute("header", header);
+			System.out.println(header.getName());
+		}
+		Boolean avaivableListEmpty = availableBookCopyList.equals(Collections.emptyList());
+		Boolean notAvaivableListEmpty = notAvailableBookCopyList.equals(Collections.emptyList());
 
-        Character yes = 'Y';
-        List<BookCopy> bookCopyList = bookCopyService.findByISBN(isbn);
-        List<BookCopy> availableBookCopyList = new ArrayList<BookCopy>();
-        List<BookCopy> notAvailableBookCopyList = new ArrayList<BookCopy>();
-        for (BookCopy bookCopy : bookCopyList){
-            if (bookCopy.getIsPresent().equals(yes)){
-                 availableBookCopyList.add(bookCopy);
-            }else {
-                notAvailableBookCopyList.add(bookCopy);
-            }
-        }
-        Book header =  bookCopyList.get(0).getBook();
-        System.out.println(header.getName());
+		model.addAttribute("avaivableListEmpty", avaivableListEmpty);
+		model.addAttribute("notAvaivableListEmpty", notAvaivableListEmpty);
+		model.addAttribute("availableBookCopyList", availableBookCopyList);
+		model.addAttribute("notAvailableBookCopyList", notAvailableBookCopyList);
+		model.addAttribute("bookcopies", bookCopyList);
+		
+		model.addAttribute("isbn", isbn);
+		return "bookCopy/currentbookcopy";
+	}
 
-        Boolean avaivableListEmpty = availableBookCopyList.equals(Collections.emptyList());
-        Boolean notAvaivableListEmpty = notAvailableBookCopyList.equals(Collections.emptyList());
+	@RequestMapping(value = { "/delete-bookcopy-{isbn}-{id}" }, method = RequestMethod.GET)
+	public String deleteBookCopy(@PathVariable Integer isbn, @PathVariable Integer id) {
+		bookCopyService.deleteById(id);
+		return "redirect:/bookcopies/currentbookcopy-" + isbn;
+	}
 
-        model.addAttribute("avaivableListEmpty", avaivableListEmpty);
-        model.addAttribute("notAvaivableListEmpty", notAvaivableListEmpty);
-        model.addAttribute("availableBookCopyList", availableBookCopyList);
-        model.addAttribute("notAvailableBookCopyList", notAvailableBookCopyList);
-        model.addAttribute("bookcopies", bookCopyList);
-        model.addAttribute("header", header);
-        model.addAttribute("isbn", isbn);
-        return "bookCopy/currentbookcopy";
-    }
+	@RequestMapping(value = { "/addbookcopy-{isbn}" }, method = RequestMethod.GET)
+	public String saveBookCopy(@PathVariable Integer isbn) {
 
-    @RequestMapping(value = { "/delete-bookcopy-{isbn}-{id}" }, method = RequestMethod.GET)
-    public String deleteBookCopy(@PathVariable Integer isbn, @PathVariable Integer id) {
-        bookCopyService.deleteById(id);
-        return "redirect:/bookcopies/currentbookcopy-"+isbn;
-    }
+		Character isPresent = 'Y';
+		BookCopy bookCopy = new BookCopy(bookService.getBookByISBN(isbn), isPresent, new Date(), new Date());
 
-    @RequestMapping(value = { "/addbookcopy-{isbn}" }, method = RequestMethod.GET)
-    public String saveBookCopy( @PathVariable Integer isbn) {
-
-        Character isPresent = 'Y';
-        BookCopy bookCopy =new BookCopy(bookService.getBookByISBN(isbn), isPresent, new Date(), new Date()
-                );
-
-        bookCopyService.save(bookCopy);
-        return "redirect:/bookcopies/currentbookcopy-"+isbn;
-    }
+		bookCopyService.save(bookCopy);
+		return "redirect:/bookcopies/currentbookcopy-" + isbn;
+	}
 }
