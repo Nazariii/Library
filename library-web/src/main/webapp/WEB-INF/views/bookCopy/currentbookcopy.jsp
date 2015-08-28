@@ -105,9 +105,11 @@
                 </c:forEach>
                 <tbody>
             </table>
+            </div>
             </c:if>
 
 <c:if test="${!notAvaivableListEmpty}">
+            <div class="generic-container">
     <div class="panel panel-default">
         <div class="panel-heading">
             <span class="lead">Not available Book Copies</span>
@@ -137,15 +139,13 @@
             </c:forEach>
             <tbody>
         </table>
+        </div>
         </c:if>
 
         <div class="well">
             <a href="<c:url value='/bookcopies/addbookcopy-${isbn}'/>" class="btn btn-info ">Add
                 New BookCopy</a>
-        </div>
     </div>
-</div>
-		</div>
 </div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type='text/javascript'
