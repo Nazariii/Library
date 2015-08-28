@@ -146,7 +146,7 @@
 				<div class="row">
 					<div class="form-actions floatRight">
 						<input type="submit" value="add" class="btn btn-primary btn-sm" />
-						or <a href="<c:url value='/books/' />">Cancel</a>
+						or <a href="<c:url value='/books/booklist' />">Cancel</a>
 					</div>
 				</div>
 			</form:form>
