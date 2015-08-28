@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template -->
      <link href="<c:url value='/static/css/starter-template.css'/>" rel="stylesheet"></link>
+     <link href="<c:url value='/static/css/app.css'/>" rel="stylesheet"></link>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -72,8 +73,10 @@
     <div class="container">
 
       <div class="starter-template">
+          <span class="glyphicon glyphicon-education"></span>
         <h1>Library</h1>
         <p class="lead">Welcome</p>
+
       </div>
 
     </div><!-- /.container -->

@@ -28,3 +28,7 @@ body, .form-control {
 .custom-width {
 	width: 80px !important;
 }
+
+.glyphicon.glyphicon-education {
+	font-size: 75px;
+}
