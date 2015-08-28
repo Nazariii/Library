@@ -24,7 +24,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<c:url value='/'/>">Library</a>
+            <a class="navbar-brand" href="<c:url value='/books/booklist/'/>">Library</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -34,7 +34,7 @@
                                         aria-expanded="false">Books<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/bookcopies/list">List book copies</a></li>
-                        <li><a href="<c:url value='/books/booklist'/>">List of Books</a></li>
+                        <li><a href="/books/book/booklist">List of Books</a></li>
                     </ul>
                 </li>
                 <li><a href="/authors/list">Authors</a></li>
