@@ -2,9 +2,9 @@ package com.softserve.edu.library2.dao.entities;
 
 // Generated Aug 20, 2015 4:19:05 PM by Hibernate Tools 4.3.1
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import org.hibernate.annotations.CascadeType;
+
+import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -68,7 +68,7 @@ public class Reader implements java.io.Serializable {
 		this.readerId = readerId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = javax.persistence.CascadeType.REMOVE, fetch = FetchType.LAZY)
 	@JoinColumn(name = "address_id")
 	public Address getAddress() {
 		return this.address;
@@ -119,6 +119,7 @@ public class Reader implements java.io.Serializable {
 	public Date getBirthDate() {
 		return this.birthDate;
 	}
+
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
