@@ -34,10 +34,10 @@
 
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 					aria-controls="navbar">
 					<span class="sr-only">Toggle navigation</span> <span
@@ -55,66 +55,100 @@
 						aria-expanded="false">Readers<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/readers/list_readers">List of Readers</a></li>
-							<li><a href="#">List Readers and Books</a></li>
+							<li><a href="/readers/list_readers_books">List Readers and Books</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Add new Reader</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Addresses<span class="caret"></span></a>
+							<li><a href="/readers/new_reader">Add new Reader</a></li>
+						</ul>
+					</li>
+					<li class="dropdown active">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Addresses<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">List of Addresses</a></li>
-							<li><a href="#">List Readers and Addresses</a></li>
+							<li><a href="/addresses/list_addresses">List of Addresses</a></li>
+							<li><a href="/addresses/list_readers_addresses">List Readers and Addresses</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Add new Address</a></li>
+							<li><a href="/addresses/new_address">Add new Address</a></li>
 						</ul></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
-		</div>
-	</nav>
-
-	<div class="container">
-		<div class="generic-container">
-			<div class="panel panel-default">
-				<!-- Default panel contents -->
-				<div class="panel-heading">
-					<span class="lead">List of Book Copies </span>
-				</div>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-							<th width="100"></th>
-							<th width="100"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${bookcopies}" var="bookcopy">
-							<tr>
-								<td>${bookcopies.book}</td>
-								<td>${bookcopies.}</td>
-								<td><a
-									href="<c:url value='/edit-user-${author.authorId}' />"
-									class="btn btn-success custom-width">edit</a></td>
-								<td><a
-									href="<c:url value='/delete-user-${author.authorId}' />"
-									class="btn btn-danger custom-width">delete</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			<div class="well">
-				<a href="<c:url value='/authors/addauthor'/>" class="btn btn-info ">Add
-					New Author</a>
-			</div>
-		</div>
+	    </div>
+		<!--/.nav-collapse -->
 	</div>
+</nav>
+<div class="container">
+    <div class="generic-container">
 
-	<!-- Bootstrap core JavaScript
-================================================== -->
+        <h1>${header.name}</h1>
+
+        <c:if test="${!avaivableListEmpty}">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="lead">Available Book Copies</span>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th width="100"></th>
+                    <th width="100"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${availableBookCopyList}" var="bookcopy">
+                <c:if test="${bookcopy.isPresent eq 'Y'.charAt(0)}">
+                <tr>
+                    <td>${bookcopy.book.name}</td>
+                    <td><a
+                            href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
+                            class="btn btn-danger custom-width">delete</a></td>
+                </tr>
+                </c:if>
+                </c:forEach>
+                <tbody>
+            </table>
+            </div>
+            </c:if>
+
+<c:if test="${!notAvaivableListEmpty}">
+            <div class="generic-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="lead">Not available Book Copies</span>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Borrowing Date</th>
+                <th>Returning Date</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${notAvailableBookCopyList}" var="bookcopy">
+            <c:if test="${bookcopy.isPresent eq 'N'.charAt(0)}">
+            <tr>
+                <td>${bookcopy.book.name}</td>
+                <td>${bookcopy.borrowingDate}</td>
+                <td>${bookcopy.returningDate}</td>
+                <td><a
+                        href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
+                        class="btn btn-danger custom-width">delete</a></td>
+            </tr>
+            </c:if>
+            </c:forEach>
+            <tbody>
+        </table>
+        </div>
+        </c:if>
+
+        <div class="well">
+            <a href="<c:url value='/bookcopies/addbookcopy-${isbn}'/>" class="btn btn-info ">Add
+                New BookCopy</a>
+    </div>
+</div>
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script type='text/javascript'
 		src="<c:url value='/static/js/jquery.min.js'/>"></script>

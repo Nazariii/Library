@@ -117,4 +117,6 @@ public interface ReaderService {
      * @return
      */
     public List<Reader> findAll();
+
+    public void deleteById(Integer id);
 }

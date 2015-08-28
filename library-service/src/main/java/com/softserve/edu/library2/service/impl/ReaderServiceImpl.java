@@ -196,4 +196,10 @@ public class ReaderServiceImpl implements ReaderService{
     public List<Reader> findAll() {
         return readerDAO.findAll(Reader.class);
     }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id){
+        readerDAO.deleteById(id);
+    }
 }
