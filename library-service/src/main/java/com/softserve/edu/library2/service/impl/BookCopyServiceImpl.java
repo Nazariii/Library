@@ -6,6 +6,7 @@ import com.softserve.edu.library2.dao.entities.Author;
 import com.softserve.edu.library2.dao.entities.Book;
 import com.softserve.edu.library2.dao.entities.BookCopy;
 import com.softserve.edu.library2.service.BookCopyService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -83,6 +84,8 @@ public class BookCopyServiceImpl implements BookCopyService{
     @Override
     @Transactional
     public BookCopy findByID(Integer id){
-       return bookCopyDAO.findByID(id);
+       BookCopy bookCopy = bookCopyDAO.findByID(BookCopy.class, id);
+        Hibernate.initialize(bookCopy.getBookCopyReaders());
+    return bookCopy;
     }
 }

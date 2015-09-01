@@ -148,9 +148,10 @@ public class BookCopyController {
         bookCopyReader.setBookCopy(bookCopyService.findByID(id));
         bookCopyReader.setReader(reader);
 
+        Set<BookCopyReader> set =bookCopyService.findByID(id).getBookCopyReaders();
+        set.add(bookCopyReader);
+        bookCopyService.findByID(id).setBookCopyReaders(set);
         bookCopyService.findByID(id).setIsPresent('N');
-
-        bookCopyService.findByID(id).getBookCopyReaders().add(bookCopyReader);
         model.addAttribute("isbn", isbn);
         model.addAttribute("id", id);
         return "redirect:/bookcopies/currentbookcopy-"+isbn;
