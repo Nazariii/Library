@@ -54,7 +54,7 @@
 	</nav>
 	<div class="container">
 		<div class="generic-container">
-			<div class="well lead" align="center">Edit book ISBN 
+			<div class="well lead" align="center">Edit book ISBN
 				${book.isbn}</div>
 			<form:form method="POST" modelAttribute="book"
 				class="form-horizontal">
@@ -115,7 +115,8 @@
 				<div class="row">
 					<div class="form-actions floatRight">
 						<input type="submit" value="save" class="btn btn-primary btn-sm" />
-						or <a href="<c:url value='/books/' />">Cancel</a>
+						or <a
+							href="<c:url value='/books/books-author-${book.author.authorId}' />">Cancel</a>
 					</div>
 				</div>
 			</form:form>

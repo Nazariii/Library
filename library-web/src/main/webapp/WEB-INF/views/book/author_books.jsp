@@ -70,9 +70,9 @@
 					<tbody>
 						<c:forEach items="${books}" var="book">
 							<tr>
-								<td><a href="/currentbookcopy-${book.isbn}">${book.name}</a></td>
+								<td><a href="<c:url value='/bookcopies/currentbookcopy-${book.isbn}'/>"> ${book.name}</a></td>
 								<td>${book.year}</td>
-								<td><a href="<c:url value='/books/edit-book-${author.authorId} ${book.isbn}' />"
+								<td><a href="<c:url value='/books/edit-book-${author.authorId}-${book.isbn}' />"
 									class="btn btn-success 
  
 custom-width">edit</a></td>

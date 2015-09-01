@@ -134,7 +134,7 @@ public class BookCopyController {
     public String setReaderForBookCopy(ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
         List<Reader> readers = readerService.findAll();
         for (Reader reader: readers){
-            System.out.println();                                                                                                          hreader);
+            System.out.println();
         }
         model.addAttribute("readers", readers);
         return "bookCopy/set-reader";
