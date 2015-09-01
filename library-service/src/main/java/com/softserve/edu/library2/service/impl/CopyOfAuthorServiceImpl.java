@@ -18,8 +18,8 @@ import com.softserve.edu.library2.service.AuthorService;
  * @author Назік
  *
  */
-@Service("authorService")
-public class AuthorServiceImpl implements AuthorService {
+@Service("authorJPAService")
+public class CopyOfAuthorServiceImpl implements AuthorService {
 
 	@Autowired
 	AuthorRepository repository;
@@ -52,13 +52,13 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional("JPAtx")
 	public void save(Author author) {
-		authorDAO.save(author);
+		repository.save(author);
 	}
 
 	@Override
-	@Transactional
+	@Transactional("hibernateTX")
 	public void update(Author author) {
 		Author entity = authorDAO.findByID(Author.class, author.getAuthorId());
 		if (entity != null) {
@@ -71,13 +71,13 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	@Transactional("JPAtx")
+	@Transactional("hibernateTX")
 	public List<Author> findAll() {
-		return repository.findAll();
+		return authorDAO.findAll(Author.class);
 	}
 
 	@Override
-	@Transactional
+	@Transactional("hibernateTX")
 	public void deleteById(Integer id) {
 		authorDAO.deleteById(id);
 	}
