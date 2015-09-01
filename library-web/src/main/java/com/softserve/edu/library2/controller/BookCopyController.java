@@ -91,7 +91,7 @@ public class BookCopyController {
     @RequestMapping(value = { "/delete-bookcopy-{isbn}-{id}" }, method = RequestMethod.GET)
     public String deleteBookCopy(@PathVariable Integer isbn, @PathVariable Integer id) {
         bookCopyService.deleteById(id);
-        return "bookCopy/set-reader";
+        return "redirect:/bookcopies/currentbookcopy-"+isbn;
     }
 
     @RequestMapping(value = { "/set-reader-{isbn}-{id}" }, method = RequestMethod.POST)
@@ -134,7 +134,7 @@ public class BookCopyController {
     public String setReaderForBookCopy(ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
         List<Reader> readers = readerService.findAll();
         for (Reader reader: readers){
-            System.out.println();
+            System.out.println(reader);
         }
         model.addAttribute("readers", readers);
         return "bookCopy/set-reader";
