@@ -52,13 +52,13 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	@Transactional("hibernateTX")
+	@Transactional
 	public void save(Author author) {
-		repository.save(author);
+		authorDAO.save(author);
 	}
 
 	@Override
-	@Transactional("hibernateTX")
+	@Transactional
 	public void update(Author author) {
 		Author entity = authorDAO.findByID(Author.class, author.getAuthorId());
 		if (entity != null) {
@@ -71,13 +71,13 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	@Transactional("hibernateTX")
+	@Transactional("JPAtx")
 	public List<Author> findAll() {
-		return authorDAO.findAll(Author.class);
+		return repository.findAll();
 	}
 
 	@Override
-	@Transactional("hibernateTX")
+	@Transactional
 	public void deleteById(Integer id) {
 		authorDAO.deleteById(id);
 	}

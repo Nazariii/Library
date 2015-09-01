@@ -17,7 +17,7 @@ import com.softserve.edu.library2.dao.entities.Author;
 public interface AuthorRepository extends CrudRepository<Author, Integer> {
 
 	public Author findByLastName(String lastName);
-	
+
 	public Author findByFirstNameAndLastName(String firstName, String lastName);
 
 	@Query("SELECT author FROM Author AS author JOIN author.book AS book WHERE name LIKE ?1")
@@ -27,6 +27,8 @@ public interface AuthorRepository extends CrudRepository<Author, Integer> {
 	public List<Author> findSubauthorByBook(String name);
 
 	public void deleteByauthorId(Integer authorId);
-	
+
+	public List<Author> findAll();
+
 	public Author findByauthorId(Integer authorId);
 }
