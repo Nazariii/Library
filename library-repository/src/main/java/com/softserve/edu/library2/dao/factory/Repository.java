@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.softserve.edu.library2.repository;
+package com.softserve.edu.library2.dao.factory;
 
 import com.softserve.edu.library2.dao.*;
 import com.softserve.edu.library2.dao.impl.*;
