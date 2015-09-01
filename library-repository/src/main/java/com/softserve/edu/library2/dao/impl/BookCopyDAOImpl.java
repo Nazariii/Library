@@ -154,10 +154,6 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements Bo
 
 	}
 
-	@Override
-	public BookCopy findByID(Integer id) {
-		return findByID(id);
-	}
 
 
 }
