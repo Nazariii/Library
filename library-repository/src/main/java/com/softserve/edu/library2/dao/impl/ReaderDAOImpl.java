@@ -253,4 +253,17 @@ public class ReaderDAOImpl extends AbstractDAO<Reader, Integer> implements Reade
         delete(reader);
 
     }
+    @Override
+    public List<Reader> findAll() {
+        List<Reader> readers = Collections.emptyList();
+        try {
+            readers = findAll(Reader.class);
+        } catch (Exception e) {
+            logger.error("Error", e);
+        }
+        for (Reader reader : readers) {
+            Hibernate.initialize(reader.getBookCopyReaders());
+        }
+        return (List<Reader>) readers;
+    }
 }

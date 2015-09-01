@@ -194,7 +194,7 @@ public class ReaderServiceImpl implements ReaderService{
     @Override
     @Transactional
     public List<Reader> findAll() {
-        return readerDAO.findAll(Reader.class);
+        return readerDAO.findAll();
     }
 
     @Override

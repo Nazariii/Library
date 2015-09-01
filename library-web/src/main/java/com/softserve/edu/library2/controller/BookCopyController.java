@@ -8,11 +8,13 @@ import com.softserve.edu.library2.dao.entities.Reader;
 import com.softserve.edu.library2.dao.impl.ReaderDAOImpl;
 import com.softserve.edu.library2.service.BookCopyService;
 import com.softserve.edu.library2.service.BookService;
+import com.softserve.edu.library2.service.ReaderService;
 import com.softserve.edu.library2.service.impl.BookCopyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +36,9 @@ public class BookCopyController {
 
     @Autowired
     BookService bookService;
+
+    @Autowired
+    ReaderService readerService;
 
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
     public String listBookCopies(ModelMap model) {
@@ -86,14 +91,23 @@ public class BookCopyController {
     @RequestMapping(value = { "/delete-bookcopy-{isbn}-{id}" }, method = RequestMethod.GET)
     public String deleteBookCopy(@PathVariable Integer isbn, @PathVariable Integer id) {
         bookCopyService.deleteById(id);
-        return "redirect:/bookcopies/currentbookcopy-"+isbn;
+        return "bookCopy/set-reader";
     }
 
     @RequestMapping(value = { "/set-reader-{isbn}-{id}" }, method = RequestMethod.POST)
-    public String setReaderBookCopy(@Valid BookCopyReader bookCopyReader, BindingResult result, ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
+    public String setReaderBookCopy(@ModelAttribute("reader") Reader reader, BindingResult result, ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
         if (result.hasErrors()) {
-            return "/bookcopies/set-reader-"+ isbn +"-" + id;
+            return "bookCopy/set-reader";
         }
+
+        readerService.save(reader);
+
+        BookCopyReader bookCopyReader = new BookCopyReader();
+        bookCopyReader.setBook(bookService.getBookByISBN(isbn));
+        bookCopyReader.setBookCopy(bookCopyService.findByID(id));
+        bookCopyReader.setReader(reader);
+
+        bookCopyService.findByID(id).setIsPresent('N');
 
         bookCopyService.findByID(id).getBookCopyReaders().add(bookCopyReader);
 
@@ -102,7 +116,7 @@ public class BookCopyController {
 
 
       //  bookCopyService.save(bookCopy);
-        return "redirect:/bookcopies/currentbookcopy-"+isbn;
+        return "bookCopy/set-reader";
     }
 
     @RequestMapping(value = { "/addbookcopy-{isbn}" }, method = RequestMethod.GET)
@@ -113,6 +127,32 @@ public class BookCopyController {
                 );
 
         bookCopyService.save(bookCopy);
+        return "redirect:/bookcopies/currentbookcopy-"+isbn;
+    }
+
+    @RequestMapping(value = {"/set-reader-{isbn}-{id}"}, method = RequestMethod.GET)
+    public String setReaderForBookCopy(ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
+        List<Reader> readers = readerService.findAll();
+        for (Reader reader: readers){
+            System.out.println();                                                                                                          hreader);
+        }
+        model.addAttribute("readers", readers);
+        return "bookCopy/set-reader";
+    }
+
+    @RequestMapping(value = {"/submitreader-{isbn}-{id}-{readerId}"}, method = RequestMethod.GET)
+    public String submitReaderForBookCopy(ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id, @PathVariable Integer readerId) {
+        Reader reader = readerService.findById(readerId);
+        BookCopyReader bookCopyReader = new BookCopyReader();
+        bookCopyReader.setBook(bookService.getBookByISBN(isbn));
+        bookCopyReader.setBookCopy(bookCopyService.findByID(id));
+        bookCopyReader.setReader(reader);
+
+        bookCopyService.findByID(id).setIsPresent('N');
+
+        bookCopyService.findByID(id).getBookCopyReaders().add(bookCopyReader);
+        model.addAttribute("isbn", isbn);
+        model.addAttribute("id", id);
         return "redirect:/bookcopies/currentbookcopy-"+isbn;
     }
 }

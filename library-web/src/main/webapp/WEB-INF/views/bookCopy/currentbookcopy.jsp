@@ -102,6 +102,9 @@
                     <td><a
                             href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
                             class="btn btn-danger custom-width">delete</a></td>
+                    <td><a
+                            href="<c:url value='/bookcopies/set-reader-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
+                            class="btn btn-primary custom-width">Set reader</a></td>
                 </tr>
                 </c:if>
                 </c:forEach>
@@ -137,8 +140,8 @@
                         href="<c:url value='/bookcopies/delete-bookcopy-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
                         class="btn btn-danger custom-width">delete</a></td>
                 <td><a
-                        href="<c:url value='/bookcopies/set-reader-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
-                        class="btn btn-primary custom-width">Set reader</a></td>
+                        href="<c:url value='/bookcopies/remove-reader-${bookcopy.book.isbn}-${bookcopy.bookCopyId}' />"
+                        class="btn btn-primary custom-width">Remove reader</a></td>
             </tr>
             </c:if>
             </c:forEach>
