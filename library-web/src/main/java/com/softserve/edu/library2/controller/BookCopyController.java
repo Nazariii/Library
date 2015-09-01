@@ -1,10 +1,7 @@
 package com.softserve.edu.library2.controller;
 
 import com.softserve.edu.library2.dao.ReaderDAO;
-import com.softserve.edu.library2.dao.entities.Book;
-import com.softserve.edu.library2.dao.entities.BookCopy;
-import com.softserve.edu.library2.dao.entities.BookCopyReader;
-import com.softserve.edu.library2.dao.entities.Reader;
+import com.softserve.edu.library2.dao.entities.*;
 import com.softserve.edu.library2.dao.impl.ReaderDAOImpl;
 import com.softserve.edu.library2.service.BookCopyService;
 import com.softserve.edu.library2.service.BookService;
@@ -94,7 +91,7 @@ public class BookCopyController {
         return "redirect:/bookcopies/currentbookcopy-"+isbn;
     }
 
-    @RequestMapping(value = { "/set-reader-{isbn}-{id}" }, method = RequestMethod.POST)
+  /*  @RequestMapping(value = { "/set-reader-{isbn}-{id}" }, method = RequestMethod.POST)
     public String setReaderBookCopy(@ModelAttribute("reader") Reader reader, BindingResult result, ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
         if (result.hasErrors()) {
             return "bookCopy/set-reader";
@@ -117,7 +114,7 @@ public class BookCopyController {
 
       //  bookCopyService.save(bookCopy);
         return "bookCopy/set-reader";
-    }
+    }*/
 
     @RequestMapping(value = { "/addbookcopy-{isbn}" }, method = RequestMethod.GET)
     public String saveBookCopy( @PathVariable Integer isbn) {
@@ -144,6 +141,8 @@ public class BookCopyController {
     public String submitReaderForBookCopy(ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id, @PathVariable Integer readerId) {
         Reader reader = readerService.findById(readerId);
         BookCopyReader bookCopyReader = new BookCopyReader();
+        BookCopyReaderId idReader = new BookCopyReaderId(reader.getReaderId(), isbn);
+        bookCopyReader.setId(idReader);
         bookCopyReader.setBook(bookService.getBookByISBN(isbn));
         bookCopyReader.setBookCopy(bookCopyService.findByID(id));
         bookCopyReader.setReader(reader);
