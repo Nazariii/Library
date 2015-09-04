@@ -88,4 +88,10 @@ public class BookCopyServiceImpl implements BookCopyService{
         Hibernate.initialize(bookCopy.getBookCopyReaders());
     return bookCopy;
     }
+
+    @Override
+    @Transactional
+    public void merge(BookCopy bookCopy) {
+        bookCopyDAO.merge(bookCopy);
+    }
 }

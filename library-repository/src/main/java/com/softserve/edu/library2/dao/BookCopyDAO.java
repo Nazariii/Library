@@ -36,5 +36,5 @@ public interface BookCopyDAO extends GenericDAO<BookCopy, Integer> {
 
 	public void deleteById(Integer id);
 
-
+	public void merge(BookCopy bookCopy);
 }

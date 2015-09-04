@@ -33,4 +33,6 @@ public interface BookCopyService {
     public void save(BookCopy bookCopy);
 
     public BookCopy findByID(Integer id);
+
+    public void merge(BookCopy bookCopy);
 }
