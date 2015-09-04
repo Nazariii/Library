@@ -14,6 +14,7 @@
 		<hibernate.validator.version>5.2.1.Final</hibernate.validator.version>
 		<mysql.driver.version>5.1.36</mysql.driver.version>
 		<springframework.version>4.2.0.RELEASE</springframework.version>
+		<springframework.security.version>4.0.2.RELEASE</springframework.security.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<log4j.version>2.3</log4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

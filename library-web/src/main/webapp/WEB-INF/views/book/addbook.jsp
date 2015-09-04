@@ -47,6 +47,16 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="/addresses/new_address">Add new Address</a></li>
 						</ul></li>
+						 <li class="dropdown">
+                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user">  </span><c:out value="${pageContext.request.remoteUser}">Not Authorized</c:out><span class="caret"></span></a>
+                    	<ul class="dropdown-menu">
+                    		<li><a href=""><c:url var="logoutUrl" value="/logout"/>
+							    <form class="form-inline" action="${logoutUrl}" method="post">
+							      <input type="submit" value="Log out" />
+							      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							    </form></a></li>
+                    	</ul>
+                    </li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
