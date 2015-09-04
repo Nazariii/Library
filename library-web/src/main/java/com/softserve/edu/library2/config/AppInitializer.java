@@ -15,6 +15,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	public AppInitializer() {
+		//super();
+	}
+
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class[] { HibernateConfig.class, AppConfig.class, SpringDataConfig.class };
