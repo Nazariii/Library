@@ -155,7 +155,9 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements Bo
 	}
 	@Override
 	public void merge(BookCopy bookCopy) {
-
+		if (bookCopy == null) {
+			throw new EntityNotFoundException("Book copy not found for update");
+		}
 		merge(bookCopy);
 	}
 
