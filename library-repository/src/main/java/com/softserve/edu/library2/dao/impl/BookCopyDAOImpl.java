@@ -153,7 +153,10 @@ public class BookCopyDAOImpl extends AbstractDAO<BookCopy, Integer>implements Bo
 		delete(bookCopy);
 
 	}
+	@Override
+	public void merge(BookCopy bookCopy) {
 
-
+		merge(bookCopy);
+	}
 
 }

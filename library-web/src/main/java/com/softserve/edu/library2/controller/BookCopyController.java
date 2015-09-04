@@ -150,7 +150,7 @@ public class BookCopyController {
         Set<BookCopyReader> set =bookCopyService.findByID(id).getBookCopyReaders();
         set.add(bookCopyReader);
         bookCopyService.findByID(id).setIsPresent('N');
-        bookCopyService.save(bookCopyService.findByID(id));
+        bookCopyService.merge(bookCopyService.findByID(id));
       //  bookCopyService.findByID(id).setIsPresent(notAvailable);
         System.out.println(bookCopyService.findByID(id).getIsPresent());
         model.addAttribute("isbn", isbn);
@@ -163,7 +163,7 @@ public class BookCopyController {
     public String removeReaderForBookCopy(ModelMap model, @PathVariable Integer isbn, @PathVariable Integer id) {
         Character available = 'Y';
         bookCopyService.findByID(id).setIsPresent(available);
-        bookCopyService.save(bookCopyService.findByID(id));
+        bookCopyService.merge(bookCopyService.findByID(id));
        // bookCopyService.findByID(id).setIsPresent(available);
         System.out.println(bookCopyService.findByID(id).getIsPresent());
         return "redirect:/bookcopies/currentbookcopy-"+isbn;

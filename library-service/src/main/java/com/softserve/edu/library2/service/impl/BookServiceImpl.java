@@ -5,6 +5,7 @@ package com.softserve.edu.library2.service.impl;
 
 import java.util.List;
 
+import com.softserve.edu.library2.dao.entities.BookCopy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
